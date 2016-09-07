@@ -1,0 +1,542 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.net.rytong.net.travel.dao.Pax_infoMapper" >
+  <resultMap id="BaseResultMap" type="com.net.rytong.net.travel.model.Pax_info" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="order_no" property="orderNo" jdbcType="CHAR" />
+    <result column="air_order_no" property="airOrderNo" jdbcType="CHAR" />
+    <result column="pax_name" property="paxName" jdbcType="CHAR" />
+    <result column="pax_type" property="paxType" jdbcType="VARCHAR" />
+    <result column="inf_carrier_id" property="infCarrierId" jdbcType="BIGINT" />
+    <result column="inf_carrier_name" property="infCarrierName" jdbcType="VARCHAR" />
+    <result column="birthday" property="birthday" jdbcType="VARCHAR" />
+    <result column="gender" property="gender" jdbcType="VARCHAR" />
+    <result column="nationality" property="nationality" jdbcType="VARCHAR" />
+    <result column="id_type" property="idType" jdbcType="VARCHAR" />
+    <result column="id_no" property="idNo" jdbcType="VARCHAR" />
+    <result column="id_validity_dt" property="idValidityDt" jdbcType="VARCHAR" />
+    <result column="id_issue_nation" property="idIssueNation" jdbcType="VARCHAR" />
+    <result column="ffp_no" property="ffpNo" jdbcType="VARCHAR" />
+    <result column="ffp_level" property="ffpLevel" jdbcType="VARCHAR" />
+    <result column="is_package" property="isPackage" jdbcType="BIT" />
+    <result column="sale_amt" property="saleAmt" jdbcType="DOUBLE" />
+    <result column="pay_amt" property="payAmt" jdbcType="DOUBLE" />
+    <result column="tax_amt" property="taxAmt" jdbcType="DOUBLE" />
+    <result column="tkt_amt" property="tktAmt" jdbcType="DOUBLE" />
+    <result column="point_amt" property="pointAmt" jdbcType="DOUBLE" />
+    <result column="coupon_amt" property="couponAmt" jdbcType="INTEGER" />
+    <result column="coupon_type" property="couponType" jdbcType="VARCHAR" />
+    <result column="coupon_discount_amt" property="couponDiscountAmt" jdbcType="DOUBLE" />
+    <result column="coupon_pay_unit" property="couponPayUnit" jdbcType="VARCHAR" />
+    <result column="pay_type" property="payType" jdbcType="VARCHAR" />
+    <result column="doca_state" property="docaState" jdbcType="VARCHAR" />
+    <result column="doca_city" property="docaCity" jdbcType="VARCHAR" />
+    <result column="doca_content" property="docaContent" jdbcType="VARCHAR" />
+    <result column="doca_post_code" property="docaPostCode" jdbcType="VARCHAR" />
+    <result column="doca_nation_code" property="docaNationCode" jdbcType="VARCHAR" />
+    <result column="doca_type" property="docaType" jdbcType="VARCHAR" />
+    <result column="mobile" property="mobile" jdbcType="VARCHAR" />
+    <result column="micro_blog_name" property="microBlogName" jdbcType="VARCHAR" />
+    <result column="micro_blog_type" property="microBlogType" jdbcType="VARCHAR" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="ruleId" property="ruleid" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="is_valid" property="isValid" jdbcType="BIT" />
+    <result column="crt_dt" property="crtDt" jdbcType="BIGINT" />
+    <result column="opt_dt" property="optDt" jdbcType="BIGINT" />
+    <result column="version_num" property="versionNum" jdbcType="BIGINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, order_no, air_order_no, pax_name, pax_type, inf_carrier_id, inf_carrier_name, 
+    birthday, gender, nationality, id_type, id_no, id_validity_dt, id_issue_nation, ffp_no, 
+    ffp_level, is_package, sale_amt, pay_amt, tax_amt, tkt_amt, point_amt, coupon_amt, 
+    coupon_type, coupon_discount_amt, coupon_pay_unit, pay_type, doca_state, doca_city, 
+    doca_content, doca_post_code, doca_nation_code, doca_type, mobile, micro_blog_name, 
+    micro_blog_type, email, ruleId, remark, is_valid, crt_dt, opt_dt, version_num
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from air_pax_info
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from air_pax_info
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.net.rytong.net.travel.model.Pax_info" >
+    insert into air_pax_info (id, order_no, air_order_no, 
+      pax_name, pax_type, inf_carrier_id, 
+      inf_carrier_name, birthday, gender, 
+      nationality, id_type, id_no, 
+      id_validity_dt, id_issue_nation, ffp_no, 
+      ffp_level, is_package, sale_amt, 
+      pay_amt, tax_amt, tkt_amt, 
+      point_amt, coupon_amt, coupon_type, 
+      coupon_discount_amt, coupon_pay_unit, pay_type, 
+      doca_state, doca_city, doca_content, 
+      doca_post_code, doca_nation_code, doca_type, 
+      mobile, micro_blog_name, micro_blog_type, 
+      email, ruleId, remark, 
+      is_valid, crt_dt, opt_dt, version_num
+      )
+    values (#{id,jdbcType=BIGINT}, #{orderNo,jdbcType=CHAR}, #{airOrderNo,jdbcType=CHAR}, 
+      #{paxName,jdbcType=CHAR}, #{paxType,jdbcType=VARCHAR}, #{infCarrierId,jdbcType=BIGINT}, 
+      #{infCarrierName,jdbcType=VARCHAR}, #{birthday,jdbcType=VARCHAR}, #{gender,jdbcType=VARCHAR}, 
+      #{nationality,jdbcType=VARCHAR}, #{idType,jdbcType=VARCHAR}, #{idNo,jdbcType=VARCHAR}, 
+      #{idValidityDt,jdbcType=VARCHAR}, #{idIssueNation,jdbcType=VARCHAR}, #{ffpNo,jdbcType=VARCHAR}, 
+      #{ffpLevel,jdbcType=VARCHAR}, #{isPackage,jdbcType=BIT}, #{saleAmt,jdbcType=DOUBLE}, 
+      #{payAmt,jdbcType=DOUBLE}, #{taxAmt,jdbcType=DOUBLE}, #{tktAmt,jdbcType=DOUBLE}, 
+      #{pointAmt,jdbcType=DOUBLE}, #{couponAmt,jdbcType=INTEGER}, #{couponType,jdbcType=VARCHAR}, 
+      #{couponDiscountAmt,jdbcType=DOUBLE}, #{couponPayUnit,jdbcType=VARCHAR}, #{payType,jdbcType=VARCHAR}, 
+      #{docaState,jdbcType=VARCHAR}, #{docaCity,jdbcType=VARCHAR}, #{docaContent,jdbcType=VARCHAR}, 
+      #{docaPostCode,jdbcType=VARCHAR}, #{docaNationCode,jdbcType=VARCHAR}, #{docaType,jdbcType=VARCHAR}, 
+      #{mobile,jdbcType=VARCHAR}, #{microBlogName,jdbcType=VARCHAR}, #{microBlogType,jdbcType=VARCHAR}, 
+      #{email,jdbcType=VARCHAR}, #{ruleid,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, 
+      #{isValid,jdbcType=BIT}, #{crtDt,jdbcType=BIGINT}, #{optDt,jdbcType=BIGINT}, #{versionNum,jdbcType=BIGINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.net.rytong.net.travel.model.Pax_info" >
+    insert into air_pax_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="orderNo != null" >
+        order_no,
+      </if>
+      <if test="airOrderNo != null" >
+        air_order_no,
+      </if>
+      <if test="paxName != null" >
+        pax_name,
+      </if>
+      <if test="paxType != null" >
+        pax_type,
+      </if>
+      <if test="infCarrierId != null" >
+        inf_carrier_id,
+      </if>
+      <if test="infCarrierName != null" >
+        inf_carrier_name,
+      </if>
+      <if test="birthday != null" >
+        birthday,
+      </if>
+      <if test="gender != null" >
+        gender,
+      </if>
+      <if test="nationality != null" >
+        nationality,
+      </if>
+      <if test="idType != null" >
+        id_type,
+      </if>
+      <if test="idNo != null" >
+        id_no,
+      </if>
+      <if test="idValidityDt != null" >
+        id_validity_dt,
+      </if>
+      <if test="idIssueNation != null" >
+        id_issue_nation,
+      </if>
+      <if test="ffpNo != null" >
+        ffp_no,
+      </if>
+      <if test="ffpLevel != null" >
+        ffp_level,
+      </if>
+      <if test="isPackage != null" >
+        is_package,
+      </if>
+      <if test="saleAmt != null" >
+        sale_amt,
+      </if>
+      <if test="payAmt != null" >
+        pay_amt,
+      </if>
+      <if test="taxAmt != null" >
+        tax_amt,
+      </if>
+      <if test="tktAmt != null" >
+        tkt_amt,
+      </if>
+      <if test="pointAmt != null" >
+        point_amt,
+      </if>
+      <if test="couponAmt != null" >
+        coupon_amt,
+      </if>
+      <if test="couponType != null" >
+        coupon_type,
+      </if>
+      <if test="couponDiscountAmt != null" >
+        coupon_discount_amt,
+      </if>
+      <if test="couponPayUnit != null" >
+        coupon_pay_unit,
+      </if>
+      <if test="payType != null" >
+        pay_type,
+      </if>
+      <if test="docaState != null" >
+        doca_state,
+      </if>
+      <if test="docaCity != null" >
+        doca_city,
+      </if>
+      <if test="docaContent != null" >
+        doca_content,
+      </if>
+      <if test="docaPostCode != null" >
+        doca_post_code,
+      </if>
+      <if test="docaNationCode != null" >
+        doca_nation_code,
+      </if>
+      <if test="docaType != null" >
+        doca_type,
+      </if>
+      <if test="mobile != null" >
+        mobile,
+      </if>
+      <if test="microBlogName != null" >
+        micro_blog_name,
+      </if>
+      <if test="microBlogType != null" >
+        micro_blog_type,
+      </if>
+      <if test="email != null" >
+        email,
+      </if>
+      <if test="ruleid != null" >
+        ruleId,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="isValid != null" >
+        is_valid,
+      </if>
+      <if test="crtDt != null" >
+        crt_dt,
+      </if>
+      <if test="optDt != null" >
+        opt_dt,
+      </if>
+      <if test="versionNum != null" >
+        version_num,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="orderNo != null" >
+        #{orderNo,jdbcType=CHAR},
+      </if>
+      <if test="airOrderNo != null" >
+        #{airOrderNo,jdbcType=CHAR},
+      </if>
+      <if test="paxName != null" >
+        #{paxName,jdbcType=CHAR},
+      </if>
+      <if test="paxType != null" >
+        #{paxType,jdbcType=VARCHAR},
+      </if>
+      <if test="infCarrierId != null" >
+        #{infCarrierId,jdbcType=BIGINT},
+      </if>
+      <if test="infCarrierName != null" >
+        #{infCarrierName,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null" >
+        #{birthday,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null" >
+        #{gender,jdbcType=VARCHAR},
+      </if>
+      <if test="nationality != null" >
+        #{nationality,jdbcType=VARCHAR},
+      </if>
+      <if test="idType != null" >
+        #{idType,jdbcType=VARCHAR},
+      </if>
+      <if test="idNo != null" >
+        #{idNo,jdbcType=VARCHAR},
+      </if>
+      <if test="idValidityDt != null" >
+        #{idValidityDt,jdbcType=VARCHAR},
+      </if>
+      <if test="idIssueNation != null" >
+        #{idIssueNation,jdbcType=VARCHAR},
+      </if>
+      <if test="ffpNo != null" >
+        #{ffpNo,jdbcType=VARCHAR},
+      </if>
+      <if test="ffpLevel != null" >
+        #{ffpLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="isPackage != null" >
+        #{isPackage,jdbcType=BIT},
+      </if>
+      <if test="saleAmt != null" >
+        #{saleAmt,jdbcType=DOUBLE},
+      </if>
+      <if test="payAmt != null" >
+        #{payAmt,jdbcType=DOUBLE},
+      </if>
+      <if test="taxAmt != null" >
+        #{taxAmt,jdbcType=DOUBLE},
+      </if>
+      <if test="tktAmt != null" >
+        #{tktAmt,jdbcType=DOUBLE},
+      </if>
+      <if test="pointAmt != null" >
+        #{pointAmt,jdbcType=DOUBLE},
+      </if>
+      <if test="couponAmt != null" >
+        #{couponAmt,jdbcType=INTEGER},
+      </if>
+      <if test="couponType != null" >
+        #{couponType,jdbcType=VARCHAR},
+      </if>
+      <if test="couponDiscountAmt != null" >
+        #{couponDiscountAmt,jdbcType=DOUBLE},
+      </if>
+      <if test="couponPayUnit != null" >
+        #{couponPayUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="payType != null" >
+        #{payType,jdbcType=VARCHAR},
+      </if>
+      <if test="docaState != null" >
+        #{docaState,jdbcType=VARCHAR},
+      </if>
+      <if test="docaCity != null" >
+        #{docaCity,jdbcType=VARCHAR},
+      </if>
+      <if test="docaContent != null" >
+        #{docaContent,jdbcType=VARCHAR},
+      </if>
+      <if test="docaPostCode != null" >
+        #{docaPostCode,jdbcType=VARCHAR},
+      </if>
+      <if test="docaNationCode != null" >
+        #{docaNationCode,jdbcType=VARCHAR},
+      </if>
+      <if test="docaType != null" >
+        #{docaType,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null" >
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="microBlogName != null" >
+        #{microBlogName,jdbcType=VARCHAR},
+      </if>
+      <if test="microBlogType != null" >
+        #{microBlogType,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="ruleid != null" >
+        #{ruleid,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="isValid != null" >
+        #{isValid,jdbcType=BIT},
+      </if>
+      <if test="crtDt != null" >
+        #{crtDt,jdbcType=BIGINT},
+      </if>
+      <if test="optDt != null" >
+        #{optDt,jdbcType=BIGINT},
+      </if>
+      <if test="versionNum != null" >
+        #{versionNum,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.net.rytong.net.travel.model.Pax_info" >
+    update air_pax_info
+    <set >
+      <if test="orderNo != null" >
+        order_no = #{orderNo,jdbcType=CHAR},
+      </if>
+      <if test="airOrderNo != null" >
+        air_order_no = #{airOrderNo,jdbcType=CHAR},
+      </if>
+      <if test="paxName != null" >
+        pax_name = #{paxName,jdbcType=CHAR},
+      </if>
+      <if test="paxType != null" >
+        pax_type = #{paxType,jdbcType=VARCHAR},
+      </if>
+      <if test="infCarrierId != null" >
+        inf_carrier_id = #{infCarrierId,jdbcType=BIGINT},
+      </if>
+      <if test="infCarrierName != null" >
+        inf_carrier_name = #{infCarrierName,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null" >
+        birthday = #{birthday,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null" >
+        gender = #{gender,jdbcType=VARCHAR},
+      </if>
+      <if test="nationality != null" >
+        nationality = #{nationality,jdbcType=VARCHAR},
+      </if>
+      <if test="idType != null" >
+        id_type = #{idType,jdbcType=VARCHAR},
+      </if>
+      <if test="idNo != null" >
+        id_no = #{idNo,jdbcType=VARCHAR},
+      </if>
+      <if test="idValidityDt != null" >
+        id_validity_dt = #{idValidityDt,jdbcType=VARCHAR},
+      </if>
+      <if test="idIssueNation != null" >
+        id_issue_nation = #{idIssueNation,jdbcType=VARCHAR},
+      </if>
+      <if test="ffpNo != null" >
+        ffp_no = #{ffpNo,jdbcType=VARCHAR},
+      </if>
+      <if test="ffpLevel != null" >
+        ffp_level = #{ffpLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="isPackage != null" >
+        is_package = #{isPackage,jdbcType=BIT},
+      </if>
+      <if test="saleAmt != null" >
+        sale_amt = #{saleAmt,jdbcType=DOUBLE},
+      </if>
+      <if test="payAmt != null" >
+        pay_amt = #{payAmt,jdbcType=DOUBLE},
+      </if>
+      <if test="taxAmt != null" >
+        tax_amt = #{taxAmt,jdbcType=DOUBLE},
+      </if>
+      <if test="tktAmt != null" >
+        tkt_amt = #{tktAmt,jdbcType=DOUBLE},
+      </if>
+      <if test="pointAmt != null" >
+        point_amt = #{pointAmt,jdbcType=DOUBLE},
+      </if>
+      <if test="couponAmt != null" >
+        coupon_amt = #{couponAmt,jdbcType=INTEGER},
+      </if>
+      <if test="couponType != null" >
+        coupon_type = #{couponType,jdbcType=VARCHAR},
+      </if>
+      <if test="couponDiscountAmt != null" >
+        coupon_discount_amt = #{couponDiscountAmt,jdbcType=DOUBLE},
+      </if>
+      <if test="couponPayUnit != null" >
+        coupon_pay_unit = #{couponPayUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="payType != null" >
+        pay_type = #{payType,jdbcType=VARCHAR},
+      </if>
+      <if test="docaState != null" >
+        doca_state = #{docaState,jdbcType=VARCHAR},
+      </if>
+      <if test="docaCity != null" >
+        doca_city = #{docaCity,jdbcType=VARCHAR},
+      </if>
+      <if test="docaContent != null" >
+        doca_content = #{docaContent,jdbcType=VARCHAR},
+      </if>
+      <if test="docaPostCode != null" >
+        doca_post_code = #{docaPostCode,jdbcType=VARCHAR},
+      </if>
+      <if test="docaNationCode != null" >
+        doca_nation_code = #{docaNationCode,jdbcType=VARCHAR},
+      </if>
+      <if test="docaType != null" >
+        doca_type = #{docaType,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null" >
+        mobile = #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="microBlogName != null" >
+        micro_blog_name = #{microBlogName,jdbcType=VARCHAR},
+      </if>
+      <if test="microBlogType != null" >
+        micro_blog_type = #{microBlogType,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="ruleid != null" >
+        ruleId = #{ruleid,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="isValid != null" >
+        is_valid = #{isValid,jdbcType=BIT},
+      </if>
+      <if test="crtDt != null" >
+        crt_dt = #{crtDt,jdbcType=BIGINT},
+      </if>
+      <if test="optDt != null" >
+        opt_dt = #{optDt,jdbcType=BIGINT},
+      </if>
+      <if test="versionNum != null" >
+        version_num = #{versionNum,jdbcType=BIGINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.net.rytong.net.travel.model.Pax_info" >
+    update air_pax_info
+    set order_no = #{orderNo,jdbcType=CHAR},
+      air_order_no = #{airOrderNo,jdbcType=CHAR},
+      pax_name = #{paxName,jdbcType=CHAR},
+      pax_type = #{paxType,jdbcType=VARCHAR},
+      inf_carrier_id = #{infCarrierId,jdbcType=BIGINT},
+      inf_carrier_name = #{infCarrierName,jdbcType=VARCHAR},
+      birthday = #{birthday,jdbcType=VARCHAR},
+      gender = #{gender,jdbcType=VARCHAR},
+      nationality = #{nationality,jdbcType=VARCHAR},
+      id_type = #{idType,jdbcType=VARCHAR},
+      id_no = #{idNo,jdbcType=VARCHAR},
+      id_validity_dt = #{idValidityDt,jdbcType=VARCHAR},
+      id_issue_nation = #{idIssueNation,jdbcType=VARCHAR},
+      ffp_no = #{ffpNo,jdbcType=VARCHAR},
+      ffp_level = #{ffpLevel,jdbcType=VARCHAR},
+      is_package = #{isPackage,jdbcType=BIT},
+      sale_amt = #{saleAmt,jdbcType=DOUBLE},
+      pay_amt = #{payAmt,jdbcType=DOUBLE},
+      tax_amt = #{taxAmt,jdbcType=DOUBLE},
+      tkt_amt = #{tktAmt,jdbcType=DOUBLE},
+      point_amt = #{pointAmt,jdbcType=DOUBLE},
+      coupon_amt = #{couponAmt,jdbcType=INTEGER},
+      coupon_type = #{couponType,jdbcType=VARCHAR},
+      coupon_discount_amt = #{couponDiscountAmt,jdbcType=DOUBLE},
+      coupon_pay_unit = #{couponPayUnit,jdbcType=VARCHAR},
+      pay_type = #{payType,jdbcType=VARCHAR},
+      doca_state = #{docaState,jdbcType=VARCHAR},
+      doca_city = #{docaCity,jdbcType=VARCHAR},
+      doca_content = #{docaContent,jdbcType=VARCHAR},
+      doca_post_code = #{docaPostCode,jdbcType=VARCHAR},
+      doca_nation_code = #{docaNationCode,jdbcType=VARCHAR},
+      doca_type = #{docaType,jdbcType=VARCHAR},
+      mobile = #{mobile,jdbcType=VARCHAR},
+      micro_blog_name = #{microBlogName,jdbcType=VARCHAR},
+      micro_blog_type = #{microBlogType,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      ruleId = #{ruleid,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      is_valid = #{isValid,jdbcType=BIT},
+      crt_dt = #{crtDt,jdbcType=BIGINT},
+      opt_dt = #{optDt,jdbcType=BIGINT},
+      version_num = #{versionNum,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

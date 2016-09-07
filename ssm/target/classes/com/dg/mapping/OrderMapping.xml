@@ -1,0 +1,869 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dg.dao.IOrderDao">
+	<!-- -->
+	<cache eviction="LRU" type="com.dg.cache.RedisCache" />
+	<resultMap id="BaseResultMap" type="com.dg.bean.OrderInfoBean">
+		<id column="ORD_DATE" jdbcType="CHAR" property="ordDate" />
+		<id column="ORD_ID" jdbcType="CHAR" property="ordId" />
+		<result column="CREATE_TIME" jdbcType="CHAR" property="createTime" />
+		<result column="LST_UPD_TIME" jdbcType="CHAR" property="lstUpdTime" />
+		<result column="TXN_TIME" jdbcType="CHAR" property="txnTime" />
+		<result column="TRANS_STAT" jdbcType="CHAR" property="transStat" />
+		<result column="NOTICE_STAT" jdbcType="CHAR" property="noticeStat" />
+		<result column="TXN_TYPE" jdbcType="CHAR" property="txnType" />
+		<result column="TXN_SUB_TYPE" jdbcType="CHAR" property="txnSubType" />
+		<result column="BIZ_TYPE" jdbcType="CHAR" property="bizType" />
+		<result column="ACCESS_TYPE" jdbcType="CHAR" property="accessType" />
+		<result column="ACCESS_MODE" jdbcType="CHAR" property="accessMode" />
+		<result column="IN_BATCH_DATE" jdbcType="VARCHAR" property="inBatchDate" />
+		<result column="IN_BATCH_ID" jdbcType="VARCHAR" property="inBatchId" />
+		<result column="SIGN_METHOD" jdbcType="VARCHAR" property="signMethod" />
+		<result column="VERSION" jdbcType="VARCHAR" property="version" />
+		<result column="MER_ID" jdbcType="VARCHAR" property="merId" />
+		<result column="MER_ORDER_ID" jdbcType="VARCHAR" property="merOrderId" />
+		<result column="SUB_MER_ID" jdbcType="VARCHAR" property="subMerId" />
+		<result column="SIGN_KEY_VERSION" jdbcType="VARCHAR" property="signKeyVersion" />
+		<result column="PAY_TIME_OUT" jdbcType="VARCHAR" property="payTimeOut" />
+		<result column="PAY_TYPE" jdbcType="VARCHAR" property="payType" />
+		<result column="CHANNEL_ID" jdbcType="VARCHAR" property="channelId" />
+		<result column="CHANNEL_DATE" jdbcType="VARCHAR" property="channelDate" />
+		<result column="CHANNEL_SEQ_ID" jdbcType="VARCHAR" property="channelSeqId" />
+		<result column="CHANNEL_SUCC_TIME" jdbcType="VARCHAR" property="channelSuccTime" />
+		<result column="SUCC_TIME" jdbcType="VARCHAR" property="succTime" />
+		<result column="RECON_STAT" jdbcType="VARCHAR" property="reconStat" />
+		<result column="RECON_TIME" jdbcType="VARCHAR" property="reconTime" />
+		<result column="BACK_URL" jdbcType="VARCHAR" property="backUrl" />
+		<result column="FRONT_URL" jdbcType="VARCHAR" property="frontUrl" />
+		<result column="CURRENCY" jdbcType="VARCHAR" property="currency" />
+		<result column="PRE_AUTH_ID" jdbcType="VARCHAR" property="preAuthId" />
+		<result column="TXN_AMT" jdbcType="VARCHAR" property="txnAmt" />
+		<result column="ORDER_AMT" jdbcType="VARCHAR" property="orderAmt" />
+		<result column="FEE_AMT" jdbcType="VARCHAR" property="feeAmt" />
+		<result column="DC_TYPE" jdbcType="CHAR" property="dcType" />
+		<result column="SETTLE_STATUS" jdbcType="CHAR" property="settleStatus" />
+		<result column="SETTLE_AMOUNT" jdbcType="VARCHAR" property="settleAmount" />
+		<result column="SETTLE_CURRENCY" jdbcType="VARCHAR" property="settleCurrency" />
+		<result column="EXCHANGE_RATE" jdbcType="VARCHAR" property="exchangeRate" />
+		<result column="SETTLE_DATE" jdbcType="VARCHAR" property="settleDate" />
+		<result column="EXCHANGE_DATE" jdbcType="VARCHAR" property="exchangeDate" />
+		<result column="ERR_MSG" jdbcType="VARCHAR" property="errMsg" />
+		<result column="CUSTOMER_IP" jdbcType="VARCHAR" property="customerIp" />
+		<result column="PRIV" jdbcType="VARCHAR" property="priv" />
+		<result column="CLIENT_AGENT" jdbcType="VARCHAR" property="clientAgent" />
+		<result column="APP_ID" jdbcType="VARCHAR" property="appId" />
+		<result column="TRACE_NO" jdbcType="VARCHAR" property="traceNo" />
+		<result column="ORG_ORD_DATE" jdbcType="VARCHAR" property="orgOrdDate" />
+		<result column="ORG_ORD_ID" jdbcType="VARCHAR" property="orgOrdId" />
+		<result column="CAN_REF_AMT" jdbcType="VARCHAR" property="canRefAmt" />
+		<result column="REF_CNT" jdbcType="DECIMAL" property="refCnt" />
+		<result column="REF_AMT" jdbcType="VARCHAR" property="refAmt" />
+		<result column="ACQ_CODE" jdbcType="VARCHAR" property="acqCode" />
+		<result column="MER_RESV1" jdbcType="VARCHAR" property="merResv1" />
+		<result column="SUBJECT" jdbcType="VARCHAR" property="subject" />
+		<result column="BODY" jdbcType="VARCHAR" property="body" />
+		<result column="TRANS_DATE" jdbcType="VARCHAR" property="transDate" />
+		<result column="TRANS_SEQ_ID" jdbcType="VARCHAR" property="transSeqId" />
+		<result column="RESV1" jdbcType="VARCHAR" property="resv1" />
+		<result column="RESV2" jdbcType="VARCHAR" property="resv2" />
+		<result column="RESV3" jdbcType="VARCHAR" property="resv3" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		ORD_DATE, ORD_ID, CREATE_TIME, LST_UPD_TIME, TXN_TIME,
+		TRANS_STAT, NOTICE_STAT,
+		TXN_TYPE,
+		TXN_SUB_TYPE, BIZ_TYPE, ACCESS_TYPE,
+		ACCESS_MODE, IN_BATCH_DATE, IN_BATCH_ID,
+		SIGN_METHOD,
+		VERSION, MER_ID,
+		MER_ORDER_ID, SUB_MER_ID, SIGN_KEY_VERSION, PAY_TIME_OUT,
+		PAY_TYPE,
+		CHANNEL_ID, CHANNEL_DATE, CHANNEL_SEQ_ID, CHANNEL_SUCC_TIME,
+		SUCC_TIME,
+		RECON_STAT,
+		RECON_TIME, BACK_URL, FRONT_URL, CURRENCY,
+		PRE_AUTH_ID, TXN_AMT, ORDER_AMT,
+		FEE_AMT,
+		DC_TYPE, SETTLE_STATUS,
+		SETTLE_AMOUNT, SETTLE_CURRENCY, EXCHANGE_RATE,
+		SETTLE_DATE,
+		EXCHANGE_DATE, ERR_MSG, CUSTOMER_IP, PRIV, CLIENT_AGENT, APP_ID,
+		TRACE_NO,
+		ORG_ORD_DATE,
+		ORG_ORD_ID, CAN_REF_AMT, REF_CNT, REF_AMT,
+		ACQ_CODE, MER_RESV1, SUBJECT, BODY,
+		TRANS_DATE,
+		TRANS_SEQ_ID, RESV1,
+		RESV2, RESV3
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="com.dg.bean.OrderInfoBeanKey"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from ORDER_INFO
+		where ORD_DATE = #{ordDate,jdbcType=CHAR}
+		and ORD_ID =
+		#{ordId,jdbcType=CHAR}
+	</select>
+	<select id="selectByDate" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from ORDER_INFO
+		where ORD_DATE &gt; #{startDate,jdbcType=CHAR}
+		and
+		ORD_DATE &lt; #{endDate,jdbcType=CHAR}
+	</select>
+
+	<delete id="deleteByPrimaryKey" parameterType="com.dg.bean.OrderInfoBeanKey"> delete from
+		ORDER_INFO where ORD_DATE = #{ordDate,jdbcType=CHAR} and ORD_ID =
+		#{ordId,jdbcType=CHAR}
+	</delete>
+	<insert id="insert" parameterType="com.dg.bean.OrderInfoBean">
+		insert into ORDER_INFO
+		(ORD_DATE, ORD_ID, CREATE_TIME,
+		LST_UPD_TIME, TXN_TIME, TRANS_STAT,
+		NOTICE_STAT, TXN_TYPE, TXN_SUB_TYPE,
+		BIZ_TYPE, ACCESS_TYPE,
+		ACCESS_MODE,
+		IN_BATCH_DATE, IN_BATCH_ID, SIGN_METHOD,
+		VERSION, MER_ID,
+		MER_ORDER_ID,
+		SUB_MER_ID, SIGN_KEY_VERSION, PAY_TIME_OUT,
+		PAY_TYPE,
+		CHANNEL_ID, CHANNEL_DATE,
+		CHANNEL_SEQ_ID, CHANNEL_SUCC_TIME, SUCC_TIME,
+		RECON_STAT, RECON_TIME, BACK_URL,
+		FRONT_URL, CURRENCY, PRE_AUTH_ID,
+		TXN_AMT, ORDER_AMT, FEE_AMT,
+		DC_TYPE, SETTLE_STATUS, SETTLE_AMOUNT,
+		SETTLE_CURRENCY, EXCHANGE_RATE, SETTLE_DATE,
+		EXCHANGE_DATE, ERR_MSG,
+		CUSTOMER_IP,
+		PRIV, CLIENT_AGENT, APP_ID,
+		TRACE_NO, ORG_ORD_DATE,
+		ORG_ORD_ID,
+		CAN_REF_AMT, REF_CNT, REF_AMT,
+		ACQ_CODE, MER_RESV1, SUBJECT,
+		BODY, TRANS_DATE, TRANS_SEQ_ID,
+		RESV1, RESV2, RESV3
+		)
+		values
+		(#{ordDate,jdbcType=CHAR}, #{ordId,jdbcType=CHAR},
+		#{createTime,jdbcType=CHAR},
+		#{lstUpdTime,jdbcType=CHAR},
+		#{txnTime,jdbcType=CHAR}, #{transStat,jdbcType=CHAR},
+		#{noticeStat,jdbcType=CHAR}, #{txnType,jdbcType=CHAR},
+		#{txnSubType,jdbcType=CHAR},
+		#{bizType,jdbcType=CHAR},
+		#{accessType,jdbcType=CHAR}, #{accessMode,jdbcType=CHAR},
+		#{inBatchDate,jdbcType=VARCHAR}, #{inBatchId,jdbcType=VARCHAR},
+		#{signMethod,jdbcType=VARCHAR},
+		#{version,jdbcType=VARCHAR},
+		#{merId,jdbcType=VARCHAR}, #{merOrderId,jdbcType=VARCHAR},
+		#{subMerId,jdbcType=VARCHAR}, #{signKeyVersion,jdbcType=VARCHAR},
+		#{payTimeOut,jdbcType=VARCHAR},
+		#{payType,jdbcType=VARCHAR},
+		#{channelId,jdbcType=VARCHAR}, #{channelDate,jdbcType=VARCHAR},
+		#{channelSeqId,jdbcType=VARCHAR}, #{channelSuccTime,jdbcType=VARCHAR},
+		#{succTime,jdbcType=VARCHAR},
+		#{reconStat,jdbcType=VARCHAR},
+		#{reconTime,jdbcType=VARCHAR}, #{backUrl,jdbcType=VARCHAR},
+		#{frontUrl,jdbcType=VARCHAR}, #{currency,jdbcType=VARCHAR},
+		#{preAuthId,jdbcType=VARCHAR},
+		#{txnAmt,jdbcType=VARCHAR},
+		#{orderAmt,jdbcType=VARCHAR}, #{feeAmt,jdbcType=VARCHAR},
+		#{dcType,jdbcType=CHAR}, #{settleStatus,jdbcType=CHAR},
+		#{settleAmount,jdbcType=VARCHAR},
+		#{settleCurrency,jdbcType=VARCHAR},
+		#{exchangeRate,jdbcType=VARCHAR}, #{settleDate,jdbcType=VARCHAR},
+		#{exchangeDate,jdbcType=VARCHAR}, #{errMsg,jdbcType=VARCHAR},
+		#{customerIp,jdbcType=VARCHAR},
+		#{priv,jdbcType=VARCHAR},
+		#{clientAgent,jdbcType=VARCHAR}, #{appId,jdbcType=VARCHAR},
+		#{traceNo,jdbcType=VARCHAR}, #{orgOrdDate,jdbcType=VARCHAR},
+		#{orgOrdId,jdbcType=VARCHAR},
+		#{canRefAmt,jdbcType=VARCHAR},
+		#{refCnt,jdbcType=DECIMAL}, #{refAmt,jdbcType=VARCHAR},
+		#{acqCode,jdbcType=VARCHAR}, #{merResv1,jdbcType=VARCHAR},
+		#{subject,jdbcType=VARCHAR},
+		#{body,jdbcType=VARCHAR},
+		#{transDate,jdbcType=VARCHAR}, #{transSeqId,jdbcType=VARCHAR},
+		#{resv1,jdbcType=VARCHAR}, #{resv2,jdbcType=VARCHAR},
+		#{resv3,jdbcType=VARCHAR}
+		)
+	</insert>
+	<insert id="insertSelective" parameterType="com.dg.bean.OrderInfoBean">
+		insert into ORDER_INFO
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="ordDate != null">
+				ORD_DATE,
+			</if>
+			<if test="ordId != null">
+				ORD_ID,
+			</if>
+			<if test="createTime != null">
+				CREATE_TIME,
+			</if>
+			<if test="lstUpdTime != null">
+				LST_UPD_TIME,
+			</if>
+			<if test="txnTime != null">
+				TXN_TIME,
+			</if>
+			<if test="transStat != null">
+				TRANS_STAT,
+			</if>
+			<if test="noticeStat != null">
+				NOTICE_STAT,
+			</if>
+			<if test="txnType != null">
+				TXN_TYPE,
+			</if>
+			<if test="txnSubType != null">
+				TXN_SUB_TYPE,
+			</if>
+			<if test="bizType != null">
+				BIZ_TYPE,
+			</if>
+			<if test="accessType != null">
+				ACCESS_TYPE,
+			</if>
+			<if test="accessMode != null">
+				ACCESS_MODE,
+			</if>
+			<if test="inBatchDate != null">
+				IN_BATCH_DATE,
+			</if>
+			<if test="inBatchId != null">
+				IN_BATCH_ID,
+			</if>
+			<if test="signMethod != null">
+				SIGN_METHOD,
+			</if>
+			<if test="version != null">
+				VERSION,
+			</if>
+			<if test="merId != null">
+				MER_ID,
+			</if>
+			<if test="merOrderId != null">
+				MER_ORDER_ID,
+			</if>
+			<if test="subMerId != null">
+				SUB_MER_ID,
+			</if>
+			<if test="signKeyVersion != null">
+				SIGN_KEY_VERSION,
+			</if>
+			<if test="payTimeOut != null">
+				PAY_TIME_OUT,
+			</if>
+			<if test="payType != null">
+				PAY_TYPE,
+			</if>
+			<if test="channelId != null">
+				CHANNEL_ID,
+			</if>
+			<if test="channelDate != null">
+				CHANNEL_DATE,
+			</if>
+			<if test="channelSeqId != null">
+				CHANNEL_SEQ_ID,
+			</if>
+			<if test="channelSuccTime != null">
+				CHANNEL_SUCC_TIME,
+			</if>
+			<if test="succTime != null">
+				SUCC_TIME,
+			</if>
+			<if test="reconStat != null">
+				RECON_STAT,
+			</if>
+			<if test="reconTime != null">
+				RECON_TIME,
+			</if>
+			<if test="backUrl != null">
+				BACK_URL,
+			</if>
+			<if test="frontUrl != null">
+				FRONT_URL,
+			</if>
+			<if test="currency != null">
+				CURRENCY,
+			</if>
+			<if test="preAuthId != null">
+				PRE_AUTH_ID,
+			</if>
+			<if test="txnAmt != null">
+				TXN_AMT,
+			</if>
+			<if test="orderAmt != null">
+				ORDER_AMT,
+			</if>
+			<if test="feeAmt != null">
+				FEE_AMT,
+			</if>
+			<if test="dcType != null">
+				DC_TYPE,
+			</if>
+			<if test="settleStatus != null">
+				SETTLE_STATUS,
+			</if>
+			<if test="settleAmount != null">
+				SETTLE_AMOUNT,
+			</if>
+			<if test="settleCurrency != null">
+				SETTLE_CURRENCY,
+			</if>
+			<if test="exchangeRate != null">
+				EXCHANGE_RATE,
+			</if>
+			<if test="settleDate != null">
+				SETTLE_DATE,
+			</if>
+			<if test="exchangeDate != null">
+				EXCHANGE_DATE,
+			</if>
+			<if test="errMsg != null">
+				ERR_MSG,
+			</if>
+			<if test="customerIp != null">
+				CUSTOMER_IP,
+			</if>
+			<if test="priv != null">
+				PRIV,
+			</if>
+			<if test="clientAgent != null">
+				CLIENT_AGENT,
+			</if>
+			<if test="appId != null">
+				APP_ID,
+			</if>
+			<if test="traceNo != null">
+				TRACE_NO,
+			</if>
+			<if test="orgOrdDate != null">
+				ORG_ORD_DATE,
+			</if>
+			<if test="orgOrdId != null">
+				ORG_ORD_ID,
+			</if>
+			<if test="canRefAmt != null">
+				CAN_REF_AMT,
+			</if>
+			<if test="refCnt != null">
+				REF_CNT,
+			</if>
+			<if test="refAmt != null">
+				REF_AMT,
+			</if>
+			<if test="acqCode != null">
+				ACQ_CODE,
+			</if>
+			<if test="merResv1 != null">
+				MER_RESV1,
+			</if>
+			<if test="subject != null">
+				SUBJECT,
+			</if>
+			<if test="body != null">
+				BODY,
+			</if>
+			<if test="transDate != null">
+				TRANS_DATE,
+			</if>
+			<if test="transSeqId != null">
+				TRANS_SEQ_ID,
+			</if>
+			<if test="resv1 != null">
+				RESV1,
+			</if>
+			<if test="resv2 != null">
+				RESV2,
+			</if>
+			<if test="resv3 != null">
+				RESV3,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="ordDate != null">
+				#{ordDate,jdbcType=CHAR},
+			</if>
+			<if test="ordId != null">
+				#{ordId,jdbcType=CHAR},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=CHAR},
+			</if>
+			<if test="lstUpdTime != null">
+				#{lstUpdTime,jdbcType=CHAR},
+			</if>
+			<if test="txnTime != null">
+				#{txnTime,jdbcType=CHAR},
+			</if>
+			<if test="transStat != null">
+				#{transStat,jdbcType=CHAR},
+			</if>
+			<if test="noticeStat != null">
+				#{noticeStat,jdbcType=CHAR},
+			</if>
+			<if test="txnType != null">
+				#{txnType,jdbcType=CHAR},
+			</if>
+			<if test="txnSubType != null">
+				#{txnSubType,jdbcType=CHAR},
+			</if>
+			<if test="bizType != null">
+				#{bizType,jdbcType=CHAR},
+			</if>
+			<if test="accessType != null">
+				#{accessType,jdbcType=CHAR},
+			</if>
+			<if test="accessMode != null">
+				#{accessMode,jdbcType=CHAR},
+			</if>
+			<if test="inBatchDate != null">
+				#{inBatchDate,jdbcType=VARCHAR},
+			</if>
+			<if test="inBatchId != null">
+				#{inBatchId,jdbcType=VARCHAR},
+			</if>
+			<if test="signMethod != null">
+				#{signMethod,jdbcType=VARCHAR},
+			</if>
+			<if test="version != null">
+				#{version,jdbcType=VARCHAR},
+			</if>
+			<if test="merId != null">
+				#{merId,jdbcType=VARCHAR},
+			</if>
+			<if test="merOrderId != null">
+				#{merOrderId,jdbcType=VARCHAR},
+			</if>
+			<if test="subMerId != null">
+				#{subMerId,jdbcType=VARCHAR},
+			</if>
+			<if test="signKeyVersion != null">
+				#{signKeyVersion,jdbcType=VARCHAR},
+			</if>
+			<if test="payTimeOut != null">
+				#{payTimeOut,jdbcType=VARCHAR},
+			</if>
+			<if test="payType != null">
+				#{payType,jdbcType=VARCHAR},
+			</if>
+			<if test="channelId != null">
+				#{channelId,jdbcType=VARCHAR},
+			</if>
+			<if test="channelDate != null">
+				#{channelDate,jdbcType=VARCHAR},
+			</if>
+			<if test="channelSeqId != null">
+				#{channelSeqId,jdbcType=VARCHAR},
+			</if>
+			<if test="channelSuccTime != null">
+				#{channelSuccTime,jdbcType=VARCHAR},
+			</if>
+			<if test="succTime != null">
+				#{succTime,jdbcType=VARCHAR},
+			</if>
+			<if test="reconStat != null">
+				#{reconStat,jdbcType=VARCHAR},
+			</if>
+			<if test="reconTime != null">
+				#{reconTime,jdbcType=VARCHAR},
+			</if>
+			<if test="backUrl != null">
+				#{backUrl,jdbcType=VARCHAR},
+			</if>
+			<if test="frontUrl != null">
+				#{frontUrl,jdbcType=VARCHAR},
+			</if>
+			<if test="currency != null">
+				#{currency,jdbcType=VARCHAR},
+			</if>
+			<if test="preAuthId != null">
+				#{preAuthId,jdbcType=VARCHAR},
+			</if>
+			<if test="txnAmt != null">
+				#{txnAmt,jdbcType=VARCHAR},
+			</if>
+			<if test="orderAmt != null">
+				#{orderAmt,jdbcType=VARCHAR},
+			</if>
+			<if test="feeAmt != null">
+				#{feeAmt,jdbcType=VARCHAR},
+			</if>
+			<if test="dcType != null">
+				#{dcType,jdbcType=CHAR},
+			</if>
+			<if test="settleStatus != null">
+				#{settleStatus,jdbcType=CHAR},
+			</if>
+			<if test="settleAmount != null">
+				#{settleAmount,jdbcType=VARCHAR},
+			</if>
+			<if test="settleCurrency != null">
+				#{settleCurrency,jdbcType=VARCHAR},
+			</if>
+			<if test="exchangeRate != null">
+				#{exchangeRate,jdbcType=VARCHAR},
+			</if>
+			<if test="settleDate != null">
+				#{settleDate,jdbcType=VARCHAR},
+			</if>
+			<if test="exchangeDate != null">
+				#{exchangeDate,jdbcType=VARCHAR},
+			</if>
+			<if test="errMsg != null">
+				#{errMsg,jdbcType=VARCHAR},
+			</if>
+			<if test="customerIp != null">
+				#{customerIp,jdbcType=VARCHAR},
+			</if>
+			<if test="priv != null">
+				#{priv,jdbcType=VARCHAR},
+			</if>
+			<if test="clientAgent != null">
+				#{clientAgent,jdbcType=VARCHAR},
+			</if>
+			<if test="appId != null">
+				#{appId,jdbcType=VARCHAR},
+			</if>
+			<if test="traceNo != null">
+				#{traceNo,jdbcType=VARCHAR},
+			</if>
+			<if test="orgOrdDate != null">
+				#{orgOrdDate,jdbcType=VARCHAR},
+			</if>
+			<if test="orgOrdId != null">
+				#{orgOrdId,jdbcType=VARCHAR},
+			</if>
+			<if test="canRefAmt != null">
+				#{canRefAmt,jdbcType=VARCHAR},
+			</if>
+			<if test="refCnt != null">
+				#{refCnt,jdbcType=DECIMAL},
+			</if>
+			<if test="refAmt != null">
+				#{refAmt,jdbcType=VARCHAR},
+			</if>
+			<if test="acqCode != null">
+				#{acqCode,jdbcType=VARCHAR},
+			</if>
+			<if test="merResv1 != null">
+				#{merResv1,jdbcType=VARCHAR},
+			</if>
+			<if test="subject != null">
+				#{subject,jdbcType=VARCHAR},
+			</if>
+			<if test="body != null">
+				#{body,jdbcType=VARCHAR},
+			</if>
+			<if test="transDate != null">
+				#{transDate,jdbcType=VARCHAR},
+			</if>
+			<if test="transSeqId != null">
+				#{transSeqId,jdbcType=VARCHAR},
+			</if>
+			<if test="resv1 != null">
+				#{resv1,jdbcType=VARCHAR},
+			</if>
+			<if test="resv2 != null">
+				#{resv2,jdbcType=VARCHAR},
+			</if>
+			<if test="resv3 != null">
+				#{resv3,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.dg.bean.OrderInfoBean">
+		update ORDER_INFO
+		<set>
+			<if test="createTime != null">
+				CREATE_TIME = #{createTime,jdbcType=CHAR},
+			</if>
+			<if test="lstUpdTime != null">
+				LST_UPD_TIME = #{lstUpdTime,jdbcType=CHAR},
+			</if>
+			<if test="txnTime != null">
+				TXN_TIME = #{txnTime,jdbcType=CHAR},
+			</if>
+			<if test="transStat != null">
+				TRANS_STAT = #{transStat,jdbcType=CHAR},
+			</if>
+			<if test="noticeStat != null">
+				NOTICE_STAT = #{noticeStat,jdbcType=CHAR},
+			</if>
+			<if test="txnType != null">
+				TXN_TYPE = #{txnType,jdbcType=CHAR},
+			</if>
+			<if test="txnSubType != null">
+				TXN_SUB_TYPE = #{txnSubType,jdbcType=CHAR},
+			</if>
+			<if test="bizType != null">
+				BIZ_TYPE = #{bizType,jdbcType=CHAR},
+			</if>
+			<if test="accessType != null">
+				ACCESS_TYPE = #{accessType,jdbcType=CHAR},
+			</if>
+			<if test="accessMode != null">
+				ACCESS_MODE = #{accessMode,jdbcType=CHAR},
+			</if>
+			<if test="inBatchDate != null">
+				IN_BATCH_DATE = #{inBatchDate,jdbcType=VARCHAR},
+			</if>
+			<if test="inBatchId != null">
+				IN_BATCH_ID = #{inBatchId,jdbcType=VARCHAR},
+			</if>
+			<if test="signMethod != null">
+				SIGN_METHOD = #{signMethod,jdbcType=VARCHAR},
+			</if>
+			<if test="version != null">
+				VERSION = #{version,jdbcType=VARCHAR},
+			</if>
+			<if test="merId != null">
+				MER_ID = #{merId,jdbcType=VARCHAR},
+			</if>
+			<if test="merOrderId != null">
+				MER_ORDER_ID = #{merOrderId,jdbcType=VARCHAR},
+			</if>
+			<if test="subMerId != null">
+				SUB_MER_ID = #{subMerId,jdbcType=VARCHAR},
+			</if>
+			<if test="signKeyVersion != null">
+				SIGN_KEY_VERSION = #{signKeyVersion,jdbcType=VARCHAR},
+			</if>
+			<if test="payTimeOut != null">
+				PAY_TIME_OUT = #{payTimeOut,jdbcType=VARCHAR},
+			</if>
+			<if test="payType != null">
+				PAY_TYPE = #{payType,jdbcType=VARCHAR},
+			</if>
+			<if test="channelId != null">
+				CHANNEL_ID = #{channelId,jdbcType=VARCHAR},
+			</if>
+			<if test="channelDate != null">
+				CHANNEL_DATE = #{channelDate,jdbcType=VARCHAR},
+			</if>
+			<if test="channelSeqId != null">
+				CHANNEL_SEQ_ID = #{channelSeqId,jdbcType=VARCHAR},
+			</if>
+			<if test="channelSuccTime != null">
+				CHANNEL_SUCC_TIME = #{channelSuccTime,jdbcType=VARCHAR},
+			</if>
+			<if test="succTime != null">
+				SUCC_TIME = #{succTime,jdbcType=VARCHAR},
+			</if>
+			<if test="reconStat != null">
+				RECON_STAT = #{reconStat,jdbcType=VARCHAR},
+			</if>
+			<if test="reconTime != null">
+				RECON_TIME = #{reconTime,jdbcType=VARCHAR},
+			</if>
+			<if test="backUrl != null">
+				BACK_URL = #{backUrl,jdbcType=VARCHAR},
+			</if>
+			<if test="frontUrl != null">
+				FRONT_URL = #{frontUrl,jdbcType=VARCHAR},
+			</if>
+			<if test="currency != null">
+				CURRENCY = #{currency,jdbcType=VARCHAR},
+			</if>
+			<if test="preAuthId != null">
+				PRE_AUTH_ID = #{preAuthId,jdbcType=VARCHAR},
+			</if>
+			<if test="txnAmt != null">
+				TXN_AMT = #{txnAmt,jdbcType=VARCHAR},
+			</if>
+			<if test="orderAmt != null">
+				ORDER_AMT = #{orderAmt,jdbcType=VARCHAR},
+			</if>
+			<if test="feeAmt != null">
+				FEE_AMT = #{feeAmt,jdbcType=VARCHAR},
+			</if>
+			<if test="dcType != null">
+				DC_TYPE = #{dcType,jdbcType=CHAR},
+			</if>
+			<if test="settleStatus != null">
+				SETTLE_STATUS = #{settleStatus,jdbcType=CHAR},
+			</if>
+			<if test="settleAmount != null">
+				SETTLE_AMOUNT = #{settleAmount,jdbcType=VARCHAR},
+			</if>
+			<if test="settleCurrency != null">
+				SETTLE_CURRENCY = #{settleCurrency,jdbcType=VARCHAR},
+			</if>
+			<if test="exchangeRate != null">
+				EXCHANGE_RATE = #{exchangeRate,jdbcType=VARCHAR},
+			</if>
+			<if test="settleDate != null">
+				SETTLE_DATE = #{settleDate,jdbcType=VARCHAR},
+			</if>
+			<if test="exchangeDate != null">
+				EXCHANGE_DATE = #{exchangeDate,jdbcType=VARCHAR},
+			</if>
+			<if test="errMsg != null">
+				ERR_MSG = #{errMsg,jdbcType=VARCHAR},
+			</if>
+			<if test="customerIp != null">
+				CUSTOMER_IP = #{customerIp,jdbcType=VARCHAR},
+			</if>
+			<if test="priv != null">
+				PRIV = #{priv,jdbcType=VARCHAR},
+			</if>
+			<if test="clientAgent != null">
+				CLIENT_AGENT = #{clientAgent,jdbcType=VARCHAR},
+			</if>
+			<if test="appId != null">
+				APP_ID = #{appId,jdbcType=VARCHAR},
+			</if>
+			<if test="traceNo != null">
+				TRACE_NO = #{traceNo,jdbcType=VARCHAR},
+			</if>
+			<if test="orgOrdDate != null">
+				ORG_ORD_DATE = #{orgOrdDate,jdbcType=VARCHAR},
+			</if>
+			<if test="orgOrdId != null">
+				ORG_ORD_ID = #{orgOrdId,jdbcType=VARCHAR},
+			</if>
+			<if test="canRefAmt != null">
+				CAN_REF_AMT = #{canRefAmt,jdbcType=VARCHAR},
+			</if>
+			<if test="refCnt != null">
+				REF_CNT = #{refCnt,jdbcType=DECIMAL},
+			</if>
+			<if test="refAmt != null">
+				REF_AMT = #{refAmt,jdbcType=VARCHAR},
+			</if>
+			<if test="acqCode != null">
+				ACQ_CODE = #{acqCode,jdbcType=VARCHAR},
+			</if>
+			<if test="merResv1 != null">
+				MER_RESV1 = #{merResv1,jdbcType=VARCHAR},
+			</if>
+			<if test="subject != null">
+				SUBJECT = #{subject,jdbcType=VARCHAR},
+			</if>
+			<if test="body != null">
+				BODY = #{body,jdbcType=VARCHAR},
+			</if>
+			<if test="transDate != null">
+				TRANS_DATE = #{transDate,jdbcType=VARCHAR},
+			</if>
+			<if test="transSeqId != null">
+				TRANS_SEQ_ID = #{transSeqId,jdbcType=VARCHAR},
+			</if>
+			<if test="resv1 != null">
+				RESV1 = #{resv1,jdbcType=VARCHAR},
+			</if>
+			<if test="resv2 != null">
+				RESV2 = #{resv2,jdbcType=VARCHAR},
+			</if>
+			<if test="resv3 != null">
+				RESV3 = #{resv3,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where ORD_DATE = #{ordDate,jdbcType=CHAR}
+		and ORD_ID =
+		#{ordId,jdbcType=CHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.dg.bean.OrderInfoBean">
+		update ORDER_INFO
+		set CREATE_TIME = #{createTime,jdbcType=CHAR},
+		LST_UPD_TIME =
+		#{lstUpdTime,jdbcType=CHAR},
+		TXN_TIME = #{txnTime,jdbcType=CHAR},
+		TRANS_STAT = #{transStat,jdbcType=CHAR},
+		NOTICE_STAT =
+		#{noticeStat,jdbcType=CHAR},
+		TXN_TYPE = #{txnType,jdbcType=CHAR},
+		TXN_SUB_TYPE = #{txnSubType,jdbcType=CHAR},
+		BIZ_TYPE =
+		#{bizType,jdbcType=CHAR},
+		ACCESS_TYPE = #{accessType,jdbcType=CHAR},
+		ACCESS_MODE = #{accessMode,jdbcType=CHAR},
+		IN_BATCH_DATE =
+		#{inBatchDate,jdbcType=VARCHAR},
+		IN_BATCH_ID =
+		#{inBatchId,jdbcType=VARCHAR},
+		SIGN_METHOD =
+		#{signMethod,jdbcType=VARCHAR},
+		VERSION = #{version,jdbcType=VARCHAR},
+		MER_ID = #{merId,jdbcType=VARCHAR},
+		MER_ORDER_ID =
+		#{merOrderId,jdbcType=VARCHAR},
+		SUB_MER_ID =
+		#{subMerId,jdbcType=VARCHAR},
+		SIGN_KEY_VERSION =
+		#{signKeyVersion,jdbcType=VARCHAR},
+		PAY_TIME_OUT =
+		#{payTimeOut,jdbcType=VARCHAR},
+		PAY_TYPE = #{payType,jdbcType=VARCHAR},
+		CHANNEL_ID = #{channelId,jdbcType=VARCHAR},
+		CHANNEL_DATE =
+		#{channelDate,jdbcType=VARCHAR},
+		CHANNEL_SEQ_ID =
+		#{channelSeqId,jdbcType=VARCHAR},
+		CHANNEL_SUCC_TIME =
+		#{channelSuccTime,jdbcType=VARCHAR},
+		SUCC_TIME =
+		#{succTime,jdbcType=VARCHAR},
+		RECON_STAT =
+		#{reconStat,jdbcType=VARCHAR},
+		RECON_TIME =
+		#{reconTime,jdbcType=VARCHAR},
+		BACK_URL = #{backUrl,jdbcType=VARCHAR},
+		FRONT_URL = #{frontUrl,jdbcType=VARCHAR},
+		CURRENCY =
+		#{currency,jdbcType=VARCHAR},
+		PRE_AUTH_ID =
+		#{preAuthId,jdbcType=VARCHAR},
+		TXN_AMT = #{txnAmt,jdbcType=VARCHAR},
+		ORDER_AMT = #{orderAmt,jdbcType=VARCHAR},
+		FEE_AMT =
+		#{feeAmt,jdbcType=VARCHAR},
+		DC_TYPE = #{dcType,jdbcType=CHAR},
+		SETTLE_STATUS = #{settleStatus,jdbcType=CHAR},
+		SETTLE_AMOUNT =
+		#{settleAmount,jdbcType=VARCHAR},
+		SETTLE_CURRENCY =
+		#{settleCurrency,jdbcType=VARCHAR},
+		EXCHANGE_RATE =
+		#{exchangeRate,jdbcType=VARCHAR},
+		SETTLE_DATE =
+		#{settleDate,jdbcType=VARCHAR},
+		EXCHANGE_DATE =
+		#{exchangeDate,jdbcType=VARCHAR},
+		ERR_MSG = #{errMsg,jdbcType=VARCHAR},
+		CUSTOMER_IP = #{customerIp,jdbcType=VARCHAR},
+		PRIV =
+		#{priv,jdbcType=VARCHAR},
+		CLIENT_AGENT =
+		#{clientAgent,jdbcType=VARCHAR},
+		APP_ID = #{appId,jdbcType=VARCHAR},
+		TRACE_NO = #{traceNo,jdbcType=VARCHAR},
+		ORG_ORD_DATE =
+		#{orgOrdDate,jdbcType=VARCHAR},
+		ORG_ORD_ID =
+		#{orgOrdId,jdbcType=VARCHAR},
+		CAN_REF_AMT =
+		#{canRefAmt,jdbcType=VARCHAR},
+		REF_CNT = #{refCnt,jdbcType=DECIMAL},
+		REF_AMT = #{refAmt,jdbcType=VARCHAR},
+		ACQ_CODE =
+		#{acqCode,jdbcType=VARCHAR},
+		MER_RESV1 = #{merResv1,jdbcType=VARCHAR},
+		SUBJECT = #{subject,jdbcType=VARCHAR},
+		BODY = #{body,jdbcType=VARCHAR},
+		TRANS_DATE = #{transDate,jdbcType=VARCHAR},
+		TRANS_SEQ_ID =
+		#{transSeqId,jdbcType=VARCHAR},
+		RESV1 = #{resv1,jdbcType=VARCHAR},
+		RESV2 = #{resv2,jdbcType=VARCHAR},
+		RESV3 = #{resv3,jdbcType=VARCHAR}
+		where ORD_DATE = #{ordDate,jdbcType=CHAR}
+		and ORD_ID =
+		#{ordId,jdbcType=CHAR}
+	</update>
+</mapper>

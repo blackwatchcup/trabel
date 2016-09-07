@@ -1,0 +1,812 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.net.rytong.net.travel.dao.Pax_segMapper" >
+  <resultMap id="BaseResultMap" type="com.net.rytong.net.travel.model.Pax_seg" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="air_pax_id" property="airPaxId" jdbcType="BIGINT" />
+    <result column="order_no" property="orderNo" jdbcType="CHAR" />
+    <result column="air_order_no" property="airOrderNo" jdbcType="CHAR" />
+    <result column="dep_air_code" property="depAirCode" jdbcType="CHAR" />
+    <result column="arr_air_code" property="arrAirCode" jdbcType="CHAR" />
+    <result column="is_inter" property="isInter" jdbcType="BIT" />
+    <result column="dep_date" property="depDate" jdbcType="INTEGER" />
+    <result column="arr_date" property="arrDate" jdbcType="INTEGER" />
+    <result column="dep_time" property="depTime" jdbcType="VARCHAR" />
+    <result column="arr_time" property="arrTime" jdbcType="VARCHAR" />
+    <result column="trip_index" property="tripIndex" jdbcType="INTEGER" />
+    <result column="seg_index" property="segIndex" jdbcType="INTEGER" />
+    <result column="market_carrier" property="marketCarrier" jdbcType="VARCHAR" />
+    <result column="market_flight_no" property="marketFlightNo" jdbcType="VARCHAR" />
+    <result column="oper_carrier" property="operCarrier" jdbcType="VARCHAR" />
+    <result column="oper_flight_no" property="operFlightNo" jdbcType="VARCHAR" />
+    <result column="is_share" property="isShare" jdbcType="BIT" />
+    <result column="air_equip_type" property="airEquipType" jdbcType="VARCHAR" />
+    <result column="cabin_code" property="cabinCode" jdbcType="VARCHAR" />
+    <result column="cabin_level" property="cabinLevel" jdbcType="VARCHAR" />
+    <result column="sale_amt" property="saleAmt" jdbcType="DOUBLE" />
+    <result column="pay_amt" property="payAmt" jdbcType="DOUBLE" />
+    <result column="tkt_amt" property="tktAmt" jdbcType="DOUBLE" />
+    <result column="airport_tax" property="airportTax" jdbcType="DOUBLE" />
+    <result column="fule_tax" property="fuleTax" jdbcType="DOUBLE" />
+    <result column="point_amt" property="pointAmt" jdbcType="DOUBLE" />
+    <result column="coupon_amt" property="couponAmt" jdbcType="INTEGER" />
+    <result column="coupon_type" property="couponType" jdbcType="VARCHAR" />
+    <result column="coupon_discount_amt" property="couponDiscountAmt" jdbcType="DOUBLE" />
+    <result column="coupon_pay_unit" property="couponPayUnit" jdbcType="VARCHAR" />
+    <result column="pay_currency" property="payCurrency" jdbcType="VARCHAR" />
+    <result column="pay_type" property="payType" jdbcType="VARCHAR" />
+    <result column="fare_basis" property="fareBasis" jdbcType="VARCHAR" />
+    <result column="tour_code" property="tourCode" jdbcType="VARCHAR" />
+    <result column="ei" property="ei" jdbcType="VARCHAR" />
+    <result column="ei_comment" property="eiComment" jdbcType="VARCHAR" />
+    <result column="rule_id" property="ruleId" jdbcType="VARCHAR" />
+    <result column="dep_terminal" property="depTerminal" jdbcType="VARCHAR" />
+    <result column="arr_terminal" property="arrTerminal" jdbcType="VARCHAR" />
+    <result column="is_via" property="isVia" jdbcType="BIT" />
+    <result column="via_info" property="viaInfo" jdbcType="VARCHAR" />
+    <result column="is_meal" property="isMeal" jdbcType="BIT" />
+    <result column="is_asr" property="isAsr" jdbcType="BIT" />
+    <result column="tkt_no" property="tktNo" jdbcType="VARCHAR" />
+    <result column="tkt_seg_status" property="tktSegStatus" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="pnr_no" property="pnrNo" jdbcType="VARCHAR" />
+    <result column="is_history" property="isHistory" jdbcType="BIT" />
+    <result column="rel_seg_id" property="relSegId" jdbcType="BIGINT" />
+    <result column="shopping_type" property="shoppingType" jdbcType="VARCHAR" />
+    <result column="change_pay_type" property="changePayType" jdbcType="VARCHAR" />
+    <result column="change_amt" property="changeAmt" jdbcType="DOUBLE" />
+    <result column="upgrade_amt" property="upgradeAmt" jdbcType="DOUBLE" />
+    <result column="change_tax_amt" property="changeTaxAmt" jdbcType="DOUBLE" />
+    <result column="change_count" property="changeCount" jdbcType="INTEGER" />
+    <result column="gift_point" property="giftPoint" jdbcType="DOUBLE" />
+    <result column="asr_result" property="asrResult" jdbcType="VARCHAR" />
+    <result column="meal_result" property="mealResult" jdbcType="VARCHAR" />
+    <result column="position" property="position" jdbcType="INTEGER" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="is_valid" property="isValid" jdbcType="BIT" />
+    <result column="crt_dt" property="crtDt" jdbcType="BIGINT" />
+    <result column="opt_dt" property="optDt" jdbcType="BIGINT" />
+    <result column="version_num" property="versionNum" jdbcType="BIGINT" />
+    <result column="product_code" property="productCode" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, air_pax_id, order_no, air_order_no, dep_air_code, arr_air_code, is_inter, dep_date, 
+    arr_date, dep_time, arr_time, trip_index, seg_index, market_carrier, market_flight_no, 
+    oper_carrier, oper_flight_no, is_share, air_equip_type, cabin_code, cabin_level, 
+    sale_amt, pay_amt, tkt_amt, airport_tax, fule_tax, point_amt, coupon_amt, coupon_type, 
+    coupon_discount_amt, coupon_pay_unit, pay_currency, pay_type, fare_basis, tour_code, 
+    ei, ei_comment, rule_id, dep_terminal, arr_terminal, is_via, via_info, is_meal, is_asr, 
+    tkt_no, tkt_seg_status, status, pnr_no, is_history, rel_seg_id, shopping_type, change_pay_type, 
+    change_amt, upgrade_amt, change_tax_amt, change_count, gift_point, asr_result, meal_result, 
+    position, remark, is_valid, crt_dt, opt_dt, version_num, product_code
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from air_pax_seg
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from air_pax_seg
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.net.rytong.net.travel.model.Pax_seg" >
+    insert into air_pax_seg (id, air_pax_id, order_no, 
+      air_order_no, dep_air_code, arr_air_code, 
+      is_inter, dep_date, arr_date, 
+      dep_time, arr_time, trip_index, 
+      seg_index, market_carrier, market_flight_no, 
+      oper_carrier, oper_flight_no, is_share, 
+      air_equip_type, cabin_code, cabin_level, 
+      sale_amt, pay_amt, tkt_amt, 
+      airport_tax, fule_tax, point_amt, 
+      coupon_amt, coupon_type, coupon_discount_amt, 
+      coupon_pay_unit, pay_currency, pay_type, 
+      fare_basis, tour_code, ei, 
+      ei_comment, rule_id, dep_terminal, 
+      arr_terminal, is_via, via_info, 
+      is_meal, is_asr, tkt_no, tkt_seg_status, 
+      status, pnr_no, is_history, 
+      rel_seg_id, shopping_type, change_pay_type, 
+      change_amt, upgrade_amt, change_tax_amt, 
+      change_count, gift_point, asr_result, 
+      meal_result, position, remark, 
+      is_valid, crt_dt, opt_dt, version_num, 
+      product_code)
+    values (#{id,jdbcType=BIGINT}, #{airPaxId,jdbcType=BIGINT}, #{orderNo,jdbcType=CHAR}, 
+      #{airOrderNo,jdbcType=CHAR}, #{depAirCode,jdbcType=CHAR}, #{arrAirCode,jdbcType=CHAR}, 
+      #{isInter,jdbcType=BIT}, #{depDate,jdbcType=INTEGER}, #{arrDate,jdbcType=INTEGER}, 
+      #{depTime,jdbcType=VARCHAR}, #{arrTime,jdbcType=VARCHAR}, #{tripIndex,jdbcType=INTEGER}, 
+      #{segIndex,jdbcType=INTEGER}, #{marketCarrier,jdbcType=VARCHAR}, #{marketFlightNo,jdbcType=VARCHAR}, 
+      #{operCarrier,jdbcType=VARCHAR}, #{operFlightNo,jdbcType=VARCHAR}, #{isShare,jdbcType=BIT}, 
+      #{airEquipType,jdbcType=VARCHAR}, #{cabinCode,jdbcType=VARCHAR}, #{cabinLevel,jdbcType=VARCHAR}, 
+      #{saleAmt,jdbcType=DOUBLE}, #{payAmt,jdbcType=DOUBLE}, #{tktAmt,jdbcType=DOUBLE}, 
+      #{airportTax,jdbcType=DOUBLE}, #{fuleTax,jdbcType=DOUBLE}, #{pointAmt,jdbcType=DOUBLE}, 
+      #{couponAmt,jdbcType=INTEGER}, #{couponType,jdbcType=VARCHAR}, #{couponDiscountAmt,jdbcType=DOUBLE}, 
+      #{couponPayUnit,jdbcType=VARCHAR}, #{payCurrency,jdbcType=VARCHAR}, #{payType,jdbcType=VARCHAR}, 
+      #{fareBasis,jdbcType=VARCHAR}, #{tourCode,jdbcType=VARCHAR}, #{ei,jdbcType=VARCHAR}, 
+      #{eiComment,jdbcType=VARCHAR}, #{ruleId,jdbcType=VARCHAR}, #{depTerminal,jdbcType=VARCHAR}, 
+      #{arrTerminal,jdbcType=VARCHAR}, #{isVia,jdbcType=BIT}, #{viaInfo,jdbcType=VARCHAR}, 
+      #{isMeal,jdbcType=BIT}, #{isAsr,jdbcType=BIT}, #{tktNo,jdbcType=VARCHAR}, #{tktSegStatus,jdbcType=VARCHAR}, 
+      #{status,jdbcType=VARCHAR}, #{pnrNo,jdbcType=VARCHAR}, #{isHistory,jdbcType=BIT}, 
+      #{relSegId,jdbcType=BIGINT}, #{shoppingType,jdbcType=VARCHAR}, #{changePayType,jdbcType=VARCHAR}, 
+      #{changeAmt,jdbcType=DOUBLE}, #{upgradeAmt,jdbcType=DOUBLE}, #{changeTaxAmt,jdbcType=DOUBLE}, 
+      #{changeCount,jdbcType=INTEGER}, #{giftPoint,jdbcType=DOUBLE}, #{asrResult,jdbcType=VARCHAR}, 
+      #{mealResult,jdbcType=VARCHAR}, #{position,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR}, 
+      #{isValid,jdbcType=BIT}, #{crtDt,jdbcType=BIGINT}, #{optDt,jdbcType=BIGINT}, #{versionNum,jdbcType=BIGINT}, 
+      #{productCode,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.net.rytong.net.travel.model.Pax_seg" >
+    insert into air_pax_seg
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="airPaxId != null" >
+        air_pax_id,
+      </if>
+      <if test="orderNo != null" >
+        order_no,
+      </if>
+      <if test="airOrderNo != null" >
+        air_order_no,
+      </if>
+      <if test="depAirCode != null" >
+        dep_air_code,
+      </if>
+      <if test="arrAirCode != null" >
+        arr_air_code,
+      </if>
+      <if test="isInter != null" >
+        is_inter,
+      </if>
+      <if test="depDate != null" >
+        dep_date,
+      </if>
+      <if test="arrDate != null" >
+        arr_date,
+      </if>
+      <if test="depTime != null" >
+        dep_time,
+      </if>
+      <if test="arrTime != null" >
+        arr_time,
+      </if>
+      <if test="tripIndex != null" >
+        trip_index,
+      </if>
+      <if test="segIndex != null" >
+        seg_index,
+      </if>
+      <if test="marketCarrier != null" >
+        market_carrier,
+      </if>
+      <if test="marketFlightNo != null" >
+        market_flight_no,
+      </if>
+      <if test="operCarrier != null" >
+        oper_carrier,
+      </if>
+      <if test="operFlightNo != null" >
+        oper_flight_no,
+      </if>
+      <if test="isShare != null" >
+        is_share,
+      </if>
+      <if test="airEquipType != null" >
+        air_equip_type,
+      </if>
+      <if test="cabinCode != null" >
+        cabin_code,
+      </if>
+      <if test="cabinLevel != null" >
+        cabin_level,
+      </if>
+      <if test="saleAmt != null" >
+        sale_amt,
+      </if>
+      <if test="payAmt != null" >
+        pay_amt,
+      </if>
+      <if test="tktAmt != null" >
+        tkt_amt,
+      </if>
+      <if test="airportTax != null" >
+        airport_tax,
+      </if>
+      <if test="fuleTax != null" >
+        fule_tax,
+      </if>
+      <if test="pointAmt != null" >
+        point_amt,
+      </if>
+      <if test="couponAmt != null" >
+        coupon_amt,
+      </if>
+      <if test="couponType != null" >
+        coupon_type,
+      </if>
+      <if test="couponDiscountAmt != null" >
+        coupon_discount_amt,
+      </if>
+      <if test="couponPayUnit != null" >
+        coupon_pay_unit,
+      </if>
+      <if test="payCurrency != null" >
+        pay_currency,
+      </if>
+      <if test="payType != null" >
+        pay_type,
+      </if>
+      <if test="fareBasis != null" >
+        fare_basis,
+      </if>
+      <if test="tourCode != null" >
+        tour_code,
+      </if>
+      <if test="ei != null" >
+        ei,
+      </if>
+      <if test="eiComment != null" >
+        ei_comment,
+      </if>
+      <if test="ruleId != null" >
+        rule_id,
+      </if>
+      <if test="depTerminal != null" >
+        dep_terminal,
+      </if>
+      <if test="arrTerminal != null" >
+        arr_terminal,
+      </if>
+      <if test="isVia != null" >
+        is_via,
+      </if>
+      <if test="viaInfo != null" >
+        via_info,
+      </if>
+      <if test="isMeal != null" >
+        is_meal,
+      </if>
+      <if test="isAsr != null" >
+        is_asr,
+      </if>
+      <if test="tktNo != null" >
+        tkt_no,
+      </if>
+      <if test="tktSegStatus != null" >
+        tkt_seg_status,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="pnrNo != null" >
+        pnr_no,
+      </if>
+      <if test="isHistory != null" >
+        is_history,
+      </if>
+      <if test="relSegId != null" >
+        rel_seg_id,
+      </if>
+      <if test="shoppingType != null" >
+        shopping_type,
+      </if>
+      <if test="changePayType != null" >
+        change_pay_type,
+      </if>
+      <if test="changeAmt != null" >
+        change_amt,
+      </if>
+      <if test="upgradeAmt != null" >
+        upgrade_amt,
+      </if>
+      <if test="changeTaxAmt != null" >
+        change_tax_amt,
+      </if>
+      <if test="changeCount != null" >
+        change_count,
+      </if>
+      <if test="giftPoint != null" >
+        gift_point,
+      </if>
+      <if test="asrResult != null" >
+        asr_result,
+      </if>
+      <if test="mealResult != null" >
+        meal_result,
+      </if>
+      <if test="position != null" >
+        position,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="isValid != null" >
+        is_valid,
+      </if>
+      <if test="crtDt != null" >
+        crt_dt,
+      </if>
+      <if test="optDt != null" >
+        opt_dt,
+      </if>
+      <if test="versionNum != null" >
+        version_num,
+      </if>
+      <if test="productCode != null" >
+        product_code,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="airPaxId != null" >
+        #{airPaxId,jdbcType=BIGINT},
+      </if>
+      <if test="orderNo != null" >
+        #{orderNo,jdbcType=CHAR},
+      </if>
+      <if test="airOrderNo != null" >
+        #{airOrderNo,jdbcType=CHAR},
+      </if>
+      <if test="depAirCode != null" >
+        #{depAirCode,jdbcType=CHAR},
+      </if>
+      <if test="arrAirCode != null" >
+        #{arrAirCode,jdbcType=CHAR},
+      </if>
+      <if test="isInter != null" >
+        #{isInter,jdbcType=BIT},
+      </if>
+      <if test="depDate != null" >
+        #{depDate,jdbcType=INTEGER},
+      </if>
+      <if test="arrDate != null" >
+        #{arrDate,jdbcType=INTEGER},
+      </if>
+      <if test="depTime != null" >
+        #{depTime,jdbcType=VARCHAR},
+      </if>
+      <if test="arrTime != null" >
+        #{arrTime,jdbcType=VARCHAR},
+      </if>
+      <if test="tripIndex != null" >
+        #{tripIndex,jdbcType=INTEGER},
+      </if>
+      <if test="segIndex != null" >
+        #{segIndex,jdbcType=INTEGER},
+      </if>
+      <if test="marketCarrier != null" >
+        #{marketCarrier,jdbcType=VARCHAR},
+      </if>
+      <if test="marketFlightNo != null" >
+        #{marketFlightNo,jdbcType=VARCHAR},
+      </if>
+      <if test="operCarrier != null" >
+        #{operCarrier,jdbcType=VARCHAR},
+      </if>
+      <if test="operFlightNo != null" >
+        #{operFlightNo,jdbcType=VARCHAR},
+      </if>
+      <if test="isShare != null" >
+        #{isShare,jdbcType=BIT},
+      </if>
+      <if test="airEquipType != null" >
+        #{airEquipType,jdbcType=VARCHAR},
+      </if>
+      <if test="cabinCode != null" >
+        #{cabinCode,jdbcType=VARCHAR},
+      </if>
+      <if test="cabinLevel != null" >
+        #{cabinLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="saleAmt != null" >
+        #{saleAmt,jdbcType=DOUBLE},
+      </if>
+      <if test="payAmt != null" >
+        #{payAmt,jdbcType=DOUBLE},
+      </if>
+      <if test="tktAmt != null" >
+        #{tktAmt,jdbcType=DOUBLE},
+      </if>
+      <if test="airportTax != null" >
+        #{airportTax,jdbcType=DOUBLE},
+      </if>
+      <if test="fuleTax != null" >
+        #{fuleTax,jdbcType=DOUBLE},
+      </if>
+      <if test="pointAmt != null" >
+        #{pointAmt,jdbcType=DOUBLE},
+      </if>
+      <if test="couponAmt != null" >
+        #{couponAmt,jdbcType=INTEGER},
+      </if>
+      <if test="couponType != null" >
+        #{couponType,jdbcType=VARCHAR},
+      </if>
+      <if test="couponDiscountAmt != null" >
+        #{couponDiscountAmt,jdbcType=DOUBLE},
+      </if>
+      <if test="couponPayUnit != null" >
+        #{couponPayUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="payCurrency != null" >
+        #{payCurrency,jdbcType=VARCHAR},
+      </if>
+      <if test="payType != null" >
+        #{payType,jdbcType=VARCHAR},
+      </if>
+      <if test="fareBasis != null" >
+        #{fareBasis,jdbcType=VARCHAR},
+      </if>
+      <if test="tourCode != null" >
+        #{tourCode,jdbcType=VARCHAR},
+      </if>
+      <if test="ei != null" >
+        #{ei,jdbcType=VARCHAR},
+      </if>
+      <if test="eiComment != null" >
+        #{eiComment,jdbcType=VARCHAR},
+      </if>
+      <if test="ruleId != null" >
+        #{ruleId,jdbcType=VARCHAR},
+      </if>
+      <if test="depTerminal != null" >
+        #{depTerminal,jdbcType=VARCHAR},
+      </if>
+      <if test="arrTerminal != null" >
+        #{arrTerminal,jdbcType=VARCHAR},
+      </if>
+      <if test="isVia != null" >
+        #{isVia,jdbcType=BIT},
+      </if>
+      <if test="viaInfo != null" >
+        #{viaInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="isMeal != null" >
+        #{isMeal,jdbcType=BIT},
+      </if>
+      <if test="isAsr != null" >
+        #{isAsr,jdbcType=BIT},
+      </if>
+      <if test="tktNo != null" >
+        #{tktNo,jdbcType=VARCHAR},
+      </if>
+      <if test="tktSegStatus != null" >
+        #{tktSegStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="pnrNo != null" >
+        #{pnrNo,jdbcType=VARCHAR},
+      </if>
+      <if test="isHistory != null" >
+        #{isHistory,jdbcType=BIT},
+      </if>
+      <if test="relSegId != null" >
+        #{relSegId,jdbcType=BIGINT},
+      </if>
+      <if test="shoppingType != null" >
+        #{shoppingType,jdbcType=VARCHAR},
+      </if>
+      <if test="changePayType != null" >
+        #{changePayType,jdbcType=VARCHAR},
+      </if>
+      <if test="changeAmt != null" >
+        #{changeAmt,jdbcType=DOUBLE},
+      </if>
+      <if test="upgradeAmt != null" >
+        #{upgradeAmt,jdbcType=DOUBLE},
+      </if>
+      <if test="changeTaxAmt != null" >
+        #{changeTaxAmt,jdbcType=DOUBLE},
+      </if>
+      <if test="changeCount != null" >
+        #{changeCount,jdbcType=INTEGER},
+      </if>
+      <if test="giftPoint != null" >
+        #{giftPoint,jdbcType=DOUBLE},
+      </if>
+      <if test="asrResult != null" >
+        #{asrResult,jdbcType=VARCHAR},
+      </if>
+      <if test="mealResult != null" >
+        #{mealResult,jdbcType=VARCHAR},
+      </if>
+      <if test="position != null" >
+        #{position,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="isValid != null" >
+        #{isValid,jdbcType=BIT},
+      </if>
+      <if test="crtDt != null" >
+        #{crtDt,jdbcType=BIGINT},
+      </if>
+      <if test="optDt != null" >
+        #{optDt,jdbcType=BIGINT},
+      </if>
+      <if test="versionNum != null" >
+        #{versionNum,jdbcType=BIGINT},
+      </if>
+      <if test="productCode != null" >
+        #{productCode,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.net.rytong.net.travel.model.Pax_seg" >
+    update air_pax_seg
+    <set >
+      <if test="airPaxId != null" >
+        air_pax_id = #{airPaxId,jdbcType=BIGINT},
+      </if>
+      <if test="orderNo != null" >
+        order_no = #{orderNo,jdbcType=CHAR},
+      </if>
+      <if test="airOrderNo != null" >
+        air_order_no = #{airOrderNo,jdbcType=CHAR},
+      </if>
+      <if test="depAirCode != null" >
+        dep_air_code = #{depAirCode,jdbcType=CHAR},
+      </if>
+      <if test="arrAirCode != null" >
+        arr_air_code = #{arrAirCode,jdbcType=CHAR},
+      </if>
+      <if test="isInter != null" >
+        is_inter = #{isInter,jdbcType=BIT},
+      </if>
+      <if test="depDate != null" >
+        dep_date = #{depDate,jdbcType=INTEGER},
+      </if>
+      <if test="arrDate != null" >
+        arr_date = #{arrDate,jdbcType=INTEGER},
+      </if>
+      <if test="depTime != null" >
+        dep_time = #{depTime,jdbcType=VARCHAR},
+      </if>
+      <if test="arrTime != null" >
+        arr_time = #{arrTime,jdbcType=VARCHAR},
+      </if>
+      <if test="tripIndex != null" >
+        trip_index = #{tripIndex,jdbcType=INTEGER},
+      </if>
+      <if test="segIndex != null" >
+        seg_index = #{segIndex,jdbcType=INTEGER},
+      </if>
+      <if test="marketCarrier != null" >
+        market_carrier = #{marketCarrier,jdbcType=VARCHAR},
+      </if>
+      <if test="marketFlightNo != null" >
+        market_flight_no = #{marketFlightNo,jdbcType=VARCHAR},
+      </if>
+      <if test="operCarrier != null" >
+        oper_carrier = #{operCarrier,jdbcType=VARCHAR},
+      </if>
+      <if test="operFlightNo != null" >
+        oper_flight_no = #{operFlightNo,jdbcType=VARCHAR},
+      </if>
+      <if test="isShare != null" >
+        is_share = #{isShare,jdbcType=BIT},
+      </if>
+      <if test="airEquipType != null" >
+        air_equip_type = #{airEquipType,jdbcType=VARCHAR},
+      </if>
+      <if test="cabinCode != null" >
+        cabin_code = #{cabinCode,jdbcType=VARCHAR},
+      </if>
+      <if test="cabinLevel != null" >
+        cabin_level = #{cabinLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="saleAmt != null" >
+        sale_amt = #{saleAmt,jdbcType=DOUBLE},
+      </if>
+      <if test="payAmt != null" >
+        pay_amt = #{payAmt,jdbcType=DOUBLE},
+      </if>
+      <if test="tktAmt != null" >
+        tkt_amt = #{tktAmt,jdbcType=DOUBLE},
+      </if>
+      <if test="airportTax != null" >
+        airport_tax = #{airportTax,jdbcType=DOUBLE},
+      </if>
+      <if test="fuleTax != null" >
+        fule_tax = #{fuleTax,jdbcType=DOUBLE},
+      </if>
+      <if test="pointAmt != null" >
+        point_amt = #{pointAmt,jdbcType=DOUBLE},
+      </if>
+      <if test="couponAmt != null" >
+        coupon_amt = #{couponAmt,jdbcType=INTEGER},
+      </if>
+      <if test="couponType != null" >
+        coupon_type = #{couponType,jdbcType=VARCHAR},
+      </if>
+      <if test="couponDiscountAmt != null" >
+        coupon_discount_amt = #{couponDiscountAmt,jdbcType=DOUBLE},
+      </if>
+      <if test="couponPayUnit != null" >
+        coupon_pay_unit = #{couponPayUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="payCurrency != null" >
+        pay_currency = #{payCurrency,jdbcType=VARCHAR},
+      </if>
+      <if test="payType != null" >
+        pay_type = #{payType,jdbcType=VARCHAR},
+      </if>
+      <if test="fareBasis != null" >
+        fare_basis = #{fareBasis,jdbcType=VARCHAR},
+      </if>
+      <if test="tourCode != null" >
+        tour_code = #{tourCode,jdbcType=VARCHAR},
+      </if>
+      <if test="ei != null" >
+        ei = #{ei,jdbcType=VARCHAR},
+      </if>
+      <if test="eiComment != null" >
+        ei_comment = #{eiComment,jdbcType=VARCHAR},
+      </if>
+      <if test="ruleId != null" >
+        rule_id = #{ruleId,jdbcType=VARCHAR},
+      </if>
+      <if test="depTerminal != null" >
+        dep_terminal = #{depTerminal,jdbcType=VARCHAR},
+      </if>
+      <if test="arrTerminal != null" >
+        arr_terminal = #{arrTerminal,jdbcType=VARCHAR},
+      </if>
+      <if test="isVia != null" >
+        is_via = #{isVia,jdbcType=BIT},
+      </if>
+      <if test="viaInfo != null" >
+        via_info = #{viaInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="isMeal != null" >
+        is_meal = #{isMeal,jdbcType=BIT},
+      </if>
+      <if test="isAsr != null" >
+        is_asr = #{isAsr,jdbcType=BIT},
+      </if>
+      <if test="tktNo != null" >
+        tkt_no = #{tktNo,jdbcType=VARCHAR},
+      </if>
+      <if test="tktSegStatus != null" >
+        tkt_seg_status = #{tktSegStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="pnrNo != null" >
+        pnr_no = #{pnrNo,jdbcType=VARCHAR},
+      </if>
+      <if test="isHistory != null" >
+        is_history = #{isHistory,jdbcType=BIT},
+      </if>
+      <if test="relSegId != null" >
+        rel_seg_id = #{relSegId,jdbcType=BIGINT},
+      </if>
+      <if test="shoppingType != null" >
+        shopping_type = #{shoppingType,jdbcType=VARCHAR},
+      </if>
+      <if test="changePayType != null" >
+        change_pay_type = #{changePayType,jdbcType=VARCHAR},
+      </if>
+      <if test="changeAmt != null" >
+        change_amt = #{changeAmt,jdbcType=DOUBLE},
+      </if>
+      <if test="upgradeAmt != null" >
+        upgrade_amt = #{upgradeAmt,jdbcType=DOUBLE},
+      </if>
+      <if test="changeTaxAmt != null" >
+        change_tax_amt = #{changeTaxAmt,jdbcType=DOUBLE},
+      </if>
+      <if test="changeCount != null" >
+        change_count = #{changeCount,jdbcType=INTEGER},
+      </if>
+      <if test="giftPoint != null" >
+        gift_point = #{giftPoint,jdbcType=DOUBLE},
+      </if>
+      <if test="asrResult != null" >
+        asr_result = #{asrResult,jdbcType=VARCHAR},
+      </if>
+      <if test="mealResult != null" >
+        meal_result = #{mealResult,jdbcType=VARCHAR},
+      </if>
+      <if test="position != null" >
+        position = #{position,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="isValid != null" >
+        is_valid = #{isValid,jdbcType=BIT},
+      </if>
+      <if test="crtDt != null" >
+        crt_dt = #{crtDt,jdbcType=BIGINT},
+      </if>
+      <if test="optDt != null" >
+        opt_dt = #{optDt,jdbcType=BIGINT},
+      </if>
+      <if test="versionNum != null" >
+        version_num = #{versionNum,jdbcType=BIGINT},
+      </if>
+      <if test="productCode != null" >
+        product_code = #{productCode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.net.rytong.net.travel.model.Pax_seg" >
+    update air_pax_seg
+    set air_pax_id = #{airPaxId,jdbcType=BIGINT},
+      order_no = #{orderNo,jdbcType=CHAR},
+      air_order_no = #{airOrderNo,jdbcType=CHAR},
+      dep_air_code = #{depAirCode,jdbcType=CHAR},
+      arr_air_code = #{arrAirCode,jdbcType=CHAR},
+      is_inter = #{isInter,jdbcType=BIT},
+      dep_date = #{depDate,jdbcType=INTEGER},
+      arr_date = #{arrDate,jdbcType=INTEGER},
+      dep_time = #{depTime,jdbcType=VARCHAR},
+      arr_time = #{arrTime,jdbcType=VARCHAR},
+      trip_index = #{tripIndex,jdbcType=INTEGER},
+      seg_index = #{segIndex,jdbcType=INTEGER},
+      market_carrier = #{marketCarrier,jdbcType=VARCHAR},
+      market_flight_no = #{marketFlightNo,jdbcType=VARCHAR},
+      oper_carrier = #{operCarrier,jdbcType=VARCHAR},
+      oper_flight_no = #{operFlightNo,jdbcType=VARCHAR},
+      is_share = #{isShare,jdbcType=BIT},
+      air_equip_type = #{airEquipType,jdbcType=VARCHAR},
+      cabin_code = #{cabinCode,jdbcType=VARCHAR},
+      cabin_level = #{cabinLevel,jdbcType=VARCHAR},
+      sale_amt = #{saleAmt,jdbcType=DOUBLE},
+      pay_amt = #{payAmt,jdbcType=DOUBLE},
+      tkt_amt = #{tktAmt,jdbcType=DOUBLE},
+      airport_tax = #{airportTax,jdbcType=DOUBLE},
+      fule_tax = #{fuleTax,jdbcType=DOUBLE},
+      point_amt = #{pointAmt,jdbcType=DOUBLE},
+      coupon_amt = #{couponAmt,jdbcType=INTEGER},
+      coupon_type = #{couponType,jdbcType=VARCHAR},
+      coupon_discount_amt = #{couponDiscountAmt,jdbcType=DOUBLE},
+      coupon_pay_unit = #{couponPayUnit,jdbcType=VARCHAR},
+      pay_currency = #{payCurrency,jdbcType=VARCHAR},
+      pay_type = #{payType,jdbcType=VARCHAR},
+      fare_basis = #{fareBasis,jdbcType=VARCHAR},
+      tour_code = #{tourCode,jdbcType=VARCHAR},
+      ei = #{ei,jdbcType=VARCHAR},
+      ei_comment = #{eiComment,jdbcType=VARCHAR},
+      rule_id = #{ruleId,jdbcType=VARCHAR},
+      dep_terminal = #{depTerminal,jdbcType=VARCHAR},
+      arr_terminal = #{arrTerminal,jdbcType=VARCHAR},
+      is_via = #{isVia,jdbcType=BIT},
+      via_info = #{viaInfo,jdbcType=VARCHAR},
+      is_meal = #{isMeal,jdbcType=BIT},
+      is_asr = #{isAsr,jdbcType=BIT},
+      tkt_no = #{tktNo,jdbcType=VARCHAR},
+      tkt_seg_status = #{tktSegStatus,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR},
+      pnr_no = #{pnrNo,jdbcType=VARCHAR},
+      is_history = #{isHistory,jdbcType=BIT},
+      rel_seg_id = #{relSegId,jdbcType=BIGINT},
+      shopping_type = #{shoppingType,jdbcType=VARCHAR},
+      change_pay_type = #{changePayType,jdbcType=VARCHAR},
+      change_amt = #{changeAmt,jdbcType=DOUBLE},
+      upgrade_amt = #{upgradeAmt,jdbcType=DOUBLE},
+      change_tax_amt = #{changeTaxAmt,jdbcType=DOUBLE},
+      change_count = #{changeCount,jdbcType=INTEGER},
+      gift_point = #{giftPoint,jdbcType=DOUBLE},
+      asr_result = #{asrResult,jdbcType=VARCHAR},
+      meal_result = #{mealResult,jdbcType=VARCHAR},
+      position = #{position,jdbcType=INTEGER},
+      remark = #{remark,jdbcType=VARCHAR},
+      is_valid = #{isValid,jdbcType=BIT},
+      crt_dt = #{crtDt,jdbcType=BIGINT},
+      opt_dt = #{optDt,jdbcType=BIGINT},
+      version_num = #{versionNum,jdbcType=BIGINT},
+      product_code = #{productCode,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

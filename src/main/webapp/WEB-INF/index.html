@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>首页</title>
+
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="css/datepicker3.css" rel="stylesheet">
+<link href="css/styles.css" rel="stylesheet">
+
+<!--[if lt IE 9]>
+<script src="js/html5shiv.js"></script>
+<script src="js/respond.min.js"></script>
+<![endif]-->
+    <script type="text/javascript" src="js/laydate.js"></script>
+    <style>
+        .check{
+            margin-left: 150px;
+        }
+        #test1,#test2{
+             border: 1px solid #eee;
+            box-shadow: none;
+            display: block;
+            width: 100%;
+            height: 34px;
+            padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+            border-radius: 4px;//使方框边缘平滑
+                color: #555;
+        }
+        .panel-heading{
+            
+            width: 100%;
+            height: 100px;
+        }
+        .hd{
+            font-size: 30px;
+            text-align: center;
+        }
+        .line{
+            width: 900px;
+            height: 40px;
+            margin-left: 120px;
+            margin-top: 0px;
+           padding-top: 1px;
+        }
+    </style>
+</head>
+
+<body>
+	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#sidebar-collapse">
+					<span class="sr-only">首页</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#"><span>欢迎您,</a>
+				<ul class="user-menu">
+					<li class="dropdown pull-right">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> 管理员 <span class="caret"></span></a>
+						<ul class="dropdown-menu" role="menu">
+							<li><a href="#"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
+							<li><a href="#"><span class="glyphicon glyphicon-cog"></span> Settings</a></li>
+							<li><a href="#"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+		</div><!-- /.container-fluid -->
+	</nav>
+		
+	<div id="sidebar-collapse" class="col-sm-3 col-lg-2 sidebar">
+		<form role="search">
+			<div class="form-group">
+				<input type="text" id="text0" value="" class="form-control" placeholder="输入要查询询的航班号">
+            </div>
+            <div class="form-group">
+            	   <input type="text" id="test1" value="" class="inline laydate-icon" placeholder="起始时间" >
+            </div>
+            <div class="form-group">
+            	   <input type="text" id="test2" class="inline laydate-icon" placeholder="终止时间" >
+            </div>
+            
+            <input type="button" onclick="check()" class="check" value="查询" >
+		</form>
+		<ul class="nav menu">
+			<li class="active"><a href="index.html"><span class="glyphicon glyphicon-dashboard"></span>首页</a></li>
+			<li><a href="widgets.html"><span class="glyphicon glyphicon-th"></span>排名分析</a></li>
+			<li><a href="charts.html"><span class="glyphicon glyphicon-stats"></span> 价格分析</a></li>
+			<li><a href="tables.html"><span class="glyphicon glyphicon-list-alt"></span> 总体数据</a></li>
+
+			<li role="presentation" class="divider"></li>
+			<li><a href="login.html"><span class="glyphicon glyphicon-user"></span> Login Page</a></li>
+		</ul>
+		<div class="attribution">@ <a href="http://www.mycodes.net/" target="_blank">有限公司</a></div>
+	</div><!--/.sidebar-->
+		
+	<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">			
+		<div class="row">
+			<ol class="breadcrumb">
+				<li><a href="#"><span class="glyphicon glyphicon-home"></span></a></li>
+				<li class="active">Dashboard</li>
+			</ol>
+		</div><!--/.row-->
+		
+		<div class="row">
+			<div class="col-lg-12">
+				<h1 class="page-header">Dashboard</h1>
+			</div>
+		</div><!--/.row-->
+		
+		<div class="row">
+			<div class="col-xs-12 col-md-6 col-lg-3">
+				<div class="panel panel-blue panel-widget ">
+					<div class="row no-padding">
+						<div class="col-sm-3 col-lg-5 widget-left">
+							<em class="glyphicon glyphicon-shopping-cart glyphicon-l"></em>
+						</div>
+						<div class="col-sm-9 col-lg-7 widget-right">
+							<div class="large">120</div>
+							<div class="text-muted">New Orders</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-xs-12 col-md-6 col-lg-3">
+				<div class="panel panel-orange panel-widget">
+					<div class="row no-padding">
+						<div class="col-sm-3 col-lg-5 widget-left">
+							<em class="glyphicon glyphicon-comment glyphicon-l"></em>
+						</div>
+						<div class="col-sm-9 col-lg-7 widget-right">
+							<div class="large">52</div>
+							<div class="text-muted">Comments</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-xs-12 col-md-6 col-lg-3">
+				<div class="panel panel-teal panel-widget">
+					<div class="row no-padding">
+						<div class="col-sm-3 col-lg-5 widget-left">
+							<em class="glyphicon glyphicon-user glyphicon-l"></em>
+						</div>
+						<div class="col-sm-9 col-lg-7 widget-right">
+							<div class="large">24</div>
+							<div class="text-muted">New Users</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-xs-12 col-md-6 col-lg-3">
+				<div class="panel panel-red panel-widget">
+					<div class="row no-padding">
+						<div class="col-sm-3 col-lg-5 widget-left">
+							<em class="glyphicon glyphicon-stats glyphicon-l"></em>
+						</div>
+						<div class="col-sm-9 col-lg-7 widget-right">
+							<div class="large">25.2k</div>
+							<div class="text-muted">Visitors</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div><!--/.row-->
+		
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="panel panel-default">
+                    
+					<div class="panel-heading">
+                        <div class="hd">舱位曲线变化图</div>
+                   
+                    <div class="line">
+                        <label>头等舱:</label>
+						<input id ="showTime" type="text"/>
+                        <input type="checkbox" id="box" checked="checked" value="F"/>
+                        <label style="color:#ff0000;">F</label>&nbsp;&nbsp; 
+                        <input type="checkbox" id="box" checked="checked" value="A"/>
+                        <label style="color:#0000ff;">B</label>&nbsp;&nbsp;
+                        <label>公务舱:</label>
+                        <input type="checkbox" name="box" checked="checked" value="C"/>
+                        <label>C</label>&nbsp;&nbsp;
+                        <input type="checkbox" name="box" checked="checked" value="D"/>
+                        <label>D</label>&nbsp;&nbsp;
+                        <input type="checkbox" name="box" checked="checked" value="G"/>
+                        <label>G</label>&nbsp;&nbsp;
+                        <label>经济舱:</label>
+                        <input type="checkbox" name="box" checked="checked" value="Y"/>
+                        <label>Y</label>&nbsp;&nbsp;
+                        <input type="checkbox" name="box" checked="checked" value="B"/>
+                        <label>B</label>&nbsp;&nbsp;
+                        <input type="checkbox" name="box" checked="checked" value="K"/>
+                        <label>K</label>&nbsp;&nbsp;
+                        <input type="checkbox" name="box" checked="checked" value="L"/>
+                        <label>L</label>&nbsp;&nbsp;
+                        <input type="checkbox" name="box" checked="checked" value="M"/>
+                        <label>M</label>&nbsp;&nbsp;
+                         <input type="checkbox" name="box" checked="checked" value="Q"/>
+                        <label>Q</label>&nbsp;&nbsp;
+                         <input type="checkbox" name="box" checked="checked" value="K"/>
+                        <label>K</label>&nbsp;&nbsp;
+                         <input type="checkbox" name="box" checked="checked" value="X"/>
+                        <label>X</label>&nbsp;&nbsp;
+                         <input type="checkbox" name="box" checked="checked" value="E"/>
+                        <label>E</label>
+                        
+                    </div>
+                    </div>
+                    
+					<div class="panel-body">
+						<div class="canvas-wrapper">
+                            
+							<canvas class="main-chart" id="line-chart" height="200" width="600"></canvas>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div><!--/.row-->
+		
+		<div class="row">
+			<div class="col-xs-6 col-md-3">
+				<div class="panel panel-default">
+					<div class="panel-body easypiechart-panel">
+						<h4>New Orders</h4>
+						<div class="easypiechart" id="easypiechart-blue" data-percent="92" ><span class="percent">92%</span>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-xs-6 col-md-3">
+				<div class="panel panel-default">
+					<div class="panel-body easypiechart-panel">
+						<h4>Comments</h4>
+						<div class="easypiechart" id="easypiechart-orange" data-percent="65" ><span class="percent">65%</span>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-xs-6 col-md-3">
+				<div class="panel panel-default">
+					<div class="panel-body easypiechart-panel">
+						<h4>New Users</h4>
+						<div class="easypiechart" id="easypiechart-teal" data-percent="56" ><span class="percent">56%</span>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-xs-6 col-md-3">
+				<div class="panel panel-default">
+					<div class="panel-body easypiechart-panel">
+						<h4>Visitors</h4>
+						<div class="easypiechart" id="easypiechart-red" data-percent="27" ><span class="percent">27%</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div><!--/.row-->
+	</div>	<!--/.main-->
+
+	<script src="js/jquery-1.11.1.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/chart.min.js"></script>
+	<script src="js/chart-data.js"></script>
+	<script src="js/easypiechart.js"></script>
+	<script src="js/easypiechart-data.js"></script>
+	<script src="js/bootstrap-datepicker.js"></script>
+    <script type="text/javascript">
+
+</script>
+	<script>
+		$('#calendar').datepicker({
+		});
+
+		!function ($) {
+		    $(document).on("click","ul.nav li.parent > a > span.icon", function(){          
+		        $(this).find('em:first').toggleClass("glyphicon-minus");      
+		    }); 
+		    $(".sidebar span.icon").find('em:first').addClass("glyphicon-plus");
+		}(window.jQuery);
+
+		$(window).on('resize', function () {
+		  if ($(window).width() > 768) $('#sidebar-collapse').collapse('show')
+		})
+		$(window).on('resize', function () {
+		  if ($(window).width() <= 767) $('#sidebar-collapse').collapse('hide')
+		})
+	</script>
+    
+</body>
+
+</html>
