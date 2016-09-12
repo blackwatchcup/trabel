@@ -1,25 +1,26 @@
+
 var randomScalingFactor = function(){ return Math.round(Math.random()*1000)};
 	
 	 !function(){
-	laydate.skin('molv');//ÇĞ»»Æ¤·ô£¬Çë²é¿´skinsÏÂÃæÆ¤·ô¿â
-	laydate({elem: '#demo'});//°ó¶¨ÔªËØ
+	laydate.skin('molv');//ï¿½Ğ»ï¿½Æ¤ï¿½ï¿½ï¿½ï¿½ï¿½é¿´skinsï¿½ï¿½ï¿½ï¿½Æ¤ï¿½ï¿½ï¿½
+	laydate({elem: '#demo'});//ï¿½ï¿½Ôªï¿½ï¿½
 }();
 
-//×Ô¶¨ÒåÈÕÆÚ¸ñÊ½
+//ï¿½Ô¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ú¸ï¿½Ê½
 var datas1,datas2;
 laydate({
     elem: '#test1',
     format: 'YYYY.MM.DD',
-    festival: true, //ÏÔÊ¾½ÚÈÕ
-    choose: function(datas){ //Ñ¡ÔñÈÕÆÚÍê±ÏµÄ»Øµ÷
+    festival: true, //ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½
+    choose: function(datas){ //Ñ¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÏµÄ»Øµï¿½
         datas1=datas;
     }
 });
 laydate({
     elem: '#test2',
     format: 'YYYY.MM.DD',
-    festival: true, //ÏÔÊ¾½ÚÈÕ
-    choose: function(datas){ //Ñ¡ÔñÈÕÆÚÍê±ÏµÄ»Øµ÷
+    festival: true, //ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½
+    choose: function(datas){ //Ñ¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÏµÄ»Øµï¿½
         datas2=datas;
     }
 });
@@ -40,18 +41,44 @@ var lineChartData;
 										//	alert("ok");
 										//	alert(data.F);
 										lineChartData=data;
-										$('#line-chart').remove(); 
-										$('#showChart').append('<canvas id="line-chart" width="600" height="200"></canvas>');
-										var chart1 = document.getElementById('line-chart').getContext('2d');		
-										window.myLine = new Chart(chart1).Line(lineChartData, {
-										responsive: true
-										}); 
-										//myLine.destroy();
-										lineChartData=null;
-										// $("input#showTime").val(data[0].Xpoint); 
+										var a = data.xAxis;
+										var b = data.series;
+										$('#container-line').highcharts({
+											title: {
+												text: 'èˆªç­é”€å”®æƒ…å†µæ›²çº¿å›¾',
+												x: -20 //center
+											},
+											subtitle: {
+												text: '',
+												x: -20
+											},
+											xAxis: {
+												categories: a
+											},
+											yAxis: {	
+												title: {
+													text: 'é”€å”®é‡ /æ¬¡'
+												},
+												plotLines: [{
+													value: 0,
+													width: 1,
+													color: '#808080'
+												}]
+											},
+											tooltip: {
+												valueSuffix: 'æ¬¡'
+											},
+											legend: {
+												layout: 'vertical',
+												align: 'right',
+												verticalAlign: 'middle',
+												borderWidth: 0
+											},
+											series:b
+    });
                                         },
 								 error: function(data){
-									//ÇëÇó³ö´í´¦Àí
+									//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 									alert("123123");
 								}     
 								

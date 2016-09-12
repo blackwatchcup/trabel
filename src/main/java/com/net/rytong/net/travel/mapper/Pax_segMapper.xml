@@ -80,6 +80,31 @@
     change_amt, upgrade_amt, change_tax_amt, change_count, gift_point, asr_result, meal_result, 
     position, remark, is_valid, crt_dt, opt_dt, version_num, product_code
   </sql>
+  <!-- 返回航班模糊查询的结果集 -->
+  <select id="flightBynumber" resultType="com.net.rytong.net.travel.Pageflight">
+	SELECT  market_flight_no as flight ,COUNT(market_flight_no) as count ,
+	MAX(pay_amt)as max ,MIN(pay_amt) as min from air_pax_seg WHERE 
+	opt_dt BETWEEN #{start} and #{end} and 
+	market_flight_no LIKE concat("%", #{flight}, "%") and pay_amt>0
+	 GROUP BY market_flight_no ORDER BY COUNT(flight) DESC   
+  </select>
+  <!-- 返回符合条件的条数 -->
+  <select id="flightcount" resultType="Integer">
+  SELECT COUNT(a.flight) from 
+  (SELECT  market_flight_no as flight ,
+  COUNT(market_flight_no) as count,
+  MAX(pay_amt)as max ,
+  MIN(pay_amt) as min 
+  from air_pax_seg 
+  WHERE opt_dt BETWEEN #{start} and #{end}
+  and market_flight_no LIKE concat("%", #{flight},"%") and pay_amt>0 
+  GROUP BY market_flight_no )  as a
+  
+  
+  
+  </select>
+  
+  
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
     select 
     <include refid="Base_Column_List" />

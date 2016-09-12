@@ -1,7 +1,9 @@
 package com.net.rytong.net.travel.controller;
 
 import java.math.BigInteger;
+import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -20,8 +22,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.alibaba.fastjson.JSON;
 import com.net.rytong.net.travel.result.Count_flight_result;
-import com.net.rytong.net.travel.result.Dataset;
-import com.net.rytong.net.travel.result.Linedatas;
+import com.net.rytong.net.travel.result.Series;
 import com.net.rytong.net.travel.service.CountFlightService;
 import com.net.rytong.net.travel.util.FindflightCount;
 
@@ -43,28 +44,23 @@ public class CountFlightController
 	
 	@RequestMapping("/getcount")
 	@ResponseBody
-	public String showlistpoint(ServletResponse response,String fights,String start, String end){
+	public String showlistpoint(ServletResponse response,String fights,String start, String end) throws ParseException{
 		System.out.println("f:"+fights+"s："+start+"e:"+end);
 		((HttpServletResponse) response).setHeader("Access-Control-Allow-Origin", "*");
 		start = start.replace(".","")+"000000";
 		end = end.replace(".","")+"000000";
-		BigInteger s = new BigInteger(start);
-		BigInteger e = new BigInteger(end);
-		BigInteger result = e.divide(s);	
 		String flight = fights;
-		Map<String, List<String>> resultmap;
+		Map<String, List<?>> resultmap;
+		Map<String,List<?>> Linedateresult = new HashMap<>();
 		//结果集
-		Linedatas linedatas ;
+		Series series = null ;
+		List<Series> sereslist = new ArrayList<>();
 		//天数list
 		List<String> daynumber = new ArrayList<>();
 		daynumber.clear();
 		//具体销售量
 		List<String> data = new ArrayList<>();
 		data.clear();
-		//线实体类
-		Dataset line;
-		List<Dataset> linelist= new ArrayList<>();
-		linelist.clear();
 		FindflightCount flight_count = new FindflightCount() {
 			@Override
 			public  List<Count_flight_result> findInBD(BigInteger s, BigInteger e, String flight) {
@@ -73,27 +69,38 @@ public class CountFlightController
 				return list;
 			}
 		};
-		resultmap=flight_count.getresultmap(s,e,flight);
-		Iterator<Map.Entry<String, List<String>>> entries = resultmap
+		resultmap=flight_count.getresultmap(start,end,flight);
+		Iterator<Map.Entry<String, List<?>>> entries = resultmap
 				.entrySet().iterator();
-
 		while (entries.hasNext()){
 
-			Map.Entry<String, List<String>> entry = entries.next();
+			Map.Entry<String, List<?>> entry = entries.next();
 			String key =entry.getKey();
-			List<String> value = entry.getValue();
-			if(key.equals("labels")){
-				daynumber = value;
-			}else {
-				line = new Dataset(key, value);
-				linelist.add(line);
+			List<?> value = entry.getValue();
+			if(key.equals("categories")){
+				daynumber = (List<String>) value;
+			}else if(key.equals("F") ||key.equals("Y")||key.equals("J")){
+				series = new Series(key, (List<Integer>) value, true);
+			}else{
+				series = new Series(key, (List<Integer>) value, false);
 			}
 			System.out.println("Key = " + entry.getKey() + ", Value = "
 					+ entry.getValue());
+			if(series!=null){
+				sereslist.add(series);
+				series=null;
+			}
 		}
-		linedatas = new Linedatas(daynumber, linelist);
-		System.out.println(JSON.toJSONString(linedatas));
-		String dataresult = JSON.toJSONString(linedatas);
-		return dataresult; 
+		Linedateresult.put("xAxis", daynumber);
+		Linedateresult.put("series", sereslist);
+		System.out.println(JSON.toJSONString(Linedateresult));
+		String dataresult = JSON.toJSONString(Linedateresult);
+		return dataresult;
 	}
+	
+	
+	
+
+
+
 }

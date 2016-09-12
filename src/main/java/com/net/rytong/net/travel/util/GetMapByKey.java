@@ -75,15 +75,15 @@ public class GetMapByKey {
 	    }
 	    return list;
 	}
-	public static <T> String ObjectlikeString(String key, Map<String, T> map) {
+	public static <T> Integer ObjectlikeString(String key, Map<String, T> map) {
 	    String result;
 	    Iterator<T> it = (Iterator<T>) map.entrySet().iterator();
 	    while(it.hasNext()) {
 	        Map.Entry<String, T> entry = (Map.Entry<String, T>)it.next();
 	        if (entry.getKey().indexOf(key) != -1) {
-	        	return ""+entry.getValue();
+	        	return Integer.valueOf(""+entry.getValue());
 	        }
 	    }
-	    return "0";
+	    return 0;
 	}
 }

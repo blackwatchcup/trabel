@@ -31,7 +31,42 @@ public class Testshow {
 
 	@Resource
 	private CountFlightService service;
+	@Test
+	public void mapshow(){
+		Map<Integer, Integer> map = new HashMap<Integer, Integer>();  
+		map.put(1, 10); 
+		map.put(2, 11);
+		map.put(3, 12);
+		map.put(4, 13);
+		for (Map.Entry<Integer, Integer> entry : map.entrySet()) {  
+		  
+		    System.out.println("Key = " + entry.getKey() + ", Value = " + entry.getValue());  
+		  
+		} 
+		//遍历map中的键  
+		  
+		for (Integer key : map.keySet()) {  
+		    System.out.println("Key = " + key);  
+		}  
+		  
+		//遍历map中的值  
+		for (Integer value : map.values()) {  
+		  
+		    System.out.println("Value = " + value);  
+		  
+		}
+		  
+		Iterator<Map.Entry<Integer, Integer>> entries = map.entrySet().iterator();  
+		  
+		while (entries.hasNext()) {  
+		  
+		    Map.Entry<Integer, Integer> entry = entries.next();  
+		  
+		    System.out.println("Key = " + entry.getKey() + ", Value = " + entry.getValue());  
+		  
+		}  
 
+	}
 	@Test
 	public void redis (){
 		Jedis jedis = new Jedis("localhost");
@@ -64,6 +99,8 @@ public class Testshow {
 		end = new Date(start.getTime()+b);
 		System.out.println("ends:"+df.format(end));
 		System.out.println(a);
+		SimpleDateFormat df1 = new SimpleDateFormat("MM/dd");
+		System.out.println("endd1"+df1.format(end));
 	}
 	@Test
 	public void getshow() {
@@ -122,10 +159,10 @@ public class Testshow {
 				String type = flight_list.get(k);
 				List<String> count =new ArrayList<>();
 				Map<String,String> map_count= GetMapByKey.maplikeString(type, map);
-				for(int t=0 ;t<=date;t++)
+						for(int t=0 ;t<=date;t++)
 				{
-					count.add(GetMapByKey.ObjectlikeString(""+t,map_count));
-				}
+//					count.add(GetMapByKey.ObjectlikeString(""+t,map_count));
+		}
 				result_map.put(type, count);
 			}
 			
